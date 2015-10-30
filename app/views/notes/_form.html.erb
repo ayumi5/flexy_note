@@ -17,28 +17,28 @@
 
   <div class="form-group">
     <%= f.label :title, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-lg-2">
       <%= f.text_field :title, :class => 'form-control' %>
     </div>
     <%=f.error_span(:title) %>
   </div>
   <div class="form-group">
     <%= f.label :category, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-lg-2">
       <%= f.text_field :category, :class => 'form-control' %>
     </div>
     <%=f.error_span(:category) %>
   </div>
   <div class="form-group">
-    <%= f.label :content, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :content, :class => 'form-control' %>
+    <%= f.label :note, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-8">
+      <%= f.text_area :content, :class => 'form-control', rows: 15 %>
     </div>
     <%=f.error_span(:content) %>
   </div>
   <div class="form-group">
     <%= f.label :url, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-lg-5">
       <%= f.text_field :url, :class => 'form-control' %>
     </div>
     <%=f.error_span(:url) %>
