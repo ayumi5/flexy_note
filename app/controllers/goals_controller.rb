@@ -18,6 +18,7 @@ class GoalsController < ApplicationController
   
   def new
     @goal = Goal.new
+    @goals = Goal.all
   end
   
   def edit

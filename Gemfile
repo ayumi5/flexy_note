@@ -15,6 +15,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
+#form
+gem 'simple_form'
+
 #security
 # gem 'bcrypt', '~> 3.1.7'
 

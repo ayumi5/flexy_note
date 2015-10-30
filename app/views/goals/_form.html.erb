@@ -25,7 +25,7 @@
   <div class="form-group">
     <%= f.label :category, :class => 'control-label col-lg-2' %>
     <div class="col-lg-2">
-      <%= f.text_field :category, :class => 'form-control' %>
+      <%= f.collection_select :category, @goals, :id, :title, { include_blank: true, class: 'form-control'} %>
     </div>
     <%=f.error_span(:category) %>
   </div>
