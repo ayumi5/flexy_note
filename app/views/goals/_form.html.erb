@@ -1,13 +1,13 @@
-<%= form_for @note, :html => { :class => "form-horizontal note" } do |f| %>
+<%= form_for @goal, :html => { :class => "form-horizontal goal" } do |f| %>
 
-  <% if @note.errors.any? %>
+  <% if @goal.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h3>
+        <h3 class="panel-title"><%= pluralize(@goal.errors.count, "error") %> prohibited this goal from being saved:</h3>
       </div>
       <div class="panel-body">
         <ul>
-        <% @note.errors.full_messages.each do |msg| %>
+        <% @goal.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
         </ul>
@@ -30,7 +30,7 @@
     <%=f.error_span(:category) %>
   </div>
   <div class="form-group">
-    <%= f.label :note, :class => 'control-label col-lg-2' %>
+    <%= f.label :goal, :class => 'control-label col-lg-2' %>
     <div class="col-lg-8">
       <%= f.text_area :content, :class => 'form-control', rows: 15 %>
     </div>
@@ -48,7 +48,7 @@
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                notes_path, :class => 'btn btn-default' %>
+                goals_path, :class => 'btn btn-default' %>
     </div>
   </div>
 
