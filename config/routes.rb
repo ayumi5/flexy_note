@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root to: 'goals#index' 
-  resources :goals
+  root to: 'notes#index' 
+  resources :notes
 end

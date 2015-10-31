@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: enspiral_development
+  database: flexy_note_development
   username: postgres
 
 # Warning: The database defined as "test" will be erased and
@@ -10,5 +10,5 @@ development:
 test:
   adapter: postgresql
   encoding: utf8
-  database: enspiral_test
+  database: flexy_note_test
   username: postgres
