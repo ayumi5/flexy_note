@@ -1,4 +1,5 @@
 class GoalsController < ApplicationController
+  autocomplete :goal, :category
   def show
     @goal = Goal.find(params[:id])
   end
