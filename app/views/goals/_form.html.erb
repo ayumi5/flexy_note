@@ -1,8 +1,0 @@
-<%= simple_form_for @goal, html: { class: "form-horizontal goal" },
-  wrapper: :horizontal_form do |f| %>
-  <%= f.input :title %>
-  <%= f.input :category %>
-  <%= f.input :content, input_html: { rows: 8 } %>
-  <%= f.input :url, as: :url %>
-  <%= f.button :submit, class: 'create-goal' %>
-<% end %>

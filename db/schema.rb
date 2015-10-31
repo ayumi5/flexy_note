@@ -11,17 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030040951) do
+ActiveRecord::Schema.define(version: 20151031205959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "goals", force: :cascade do |t|
+  create_table "notes", force: :cascade do |t|
     t.string   "title"
     t.string   "category"
     t.text     "content"
     t.string   "url"
-    t.datetime "goal_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
