@@ -21,7 +21,7 @@
         <td><%= note.title %></td>
         <td><%= note.category %></td>
         <td><%= note.content %></td>
-        <td><%= note.url %></td>
+        <td><%= link_to note.url, note.url, target: '_blank' %></td>
         <td><%=l note.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

@@ -11,7 +11,7 @@
   <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
   <dd><%= @note.content %></dd>
   <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
-  <dd><%= @note.url %></dd>
+  <dd><%= link_to @note.url, @note.url %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

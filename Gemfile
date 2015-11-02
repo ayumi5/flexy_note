@@ -20,6 +20,8 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'simple_form'
 gem 'rails4-autocomplete'
 
+#search engine
+gem 'chewy'
 #security
 # gem 'bcrypt', '~> 3.1.7'
 
