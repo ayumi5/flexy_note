@@ -46,8 +46,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    ansi (1.5.0)
-    arel (6.0.0)
+    acts-as-taggable-on (3.5.0)
+      activerecord (>= 3.2, < 5)
+    arel (6.0.3)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -78,9 +79,6 @@ GEM
       elasticsearch-transport (= 1.0.7)
     elasticsearch-api (1.0.7)
       multi_json
-    elasticsearch-extensions (0.0.19)
-      ansi
-      ruby-prof
     elasticsearch-transport (1.0.7)
       faraday
       multi_json
@@ -174,7 +172,6 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
-    ruby-prof (0.15.6)
     sass (3.4.13)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -220,12 +217,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 3.4)
   byebug
   capybara
   chewy (~> 0.8.0)
   coffee-rails (~> 4.1.0)
   elasticsearch (= 1.0.8)
-  elasticsearch-extensions
   factory_girl_rails (~> 4.0)
   jbuilder (~> 2.0)
   jquery-rails

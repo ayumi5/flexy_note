@@ -1,0 +1,4 @@
+<%=simple_form_for :note, as: :search, url: notes_path, method: :get, as: :search do |f|%>
+  <%=f.input :query, label: 'text' %>
+  <%=f.submit :search %>
+<% end %>

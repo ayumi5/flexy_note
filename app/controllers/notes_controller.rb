@@ -5,7 +5,13 @@ class NotesController < ApplicationController
   end
   
   def index
-    @notes = Note.all
+    puts "search_params?", search_params?
+    if search_params?
+      @search = NotesSearch.new(params[:note])
+      @notes = @search.search.only(:id).load
+    else
+      @notes = Note.all
+    end
   end
   
   def create
@@ -31,7 +37,14 @@ class NotesController < ApplicationController
 
   private
   
+  def search_params?
+    if params[:note]
+      values_exist = params[:note].values.map(&:present?)
+      values_exist.uniq.first
+    end
+  end
+  
   def note_params
-    params.require(:note).permit(:title, :category, :content, :url)
+    params.require(:note).permit(:title, :category, :content, :url, :tag_list)
   end
 end

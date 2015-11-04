@@ -22,8 +22,8 @@ gem 'rails4-autocomplete'
 
 #search engine
 gem 'elasticsearch', '1.0.8'
-gem 'elasticsearch-extensions'
 gem 'chewy', '~> 0.8.0'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 #security
 # gem 'bcrypt', '~> 3.1.7'
