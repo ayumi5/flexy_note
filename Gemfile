@@ -21,7 +21,10 @@ gem 'simple_form'
 gem 'rails4-autocomplete'
 
 #search engine
-gem 'chewy'
+gem 'elasticsearch', '1.0.8'
+gem 'elasticsearch-extensions'
+gem 'chewy', '~> 0.8.0'
+
 #security
 # gem 'bcrypt', '~> 3.1.7'
 
