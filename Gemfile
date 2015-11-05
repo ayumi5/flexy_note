@@ -17,6 +17,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-sass', '~> 4.4.0'
+gem 'haml-rails'
 
 #form
 gem 'simple_form'
@@ -40,4 +41,5 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring', '~> 1.4.0'
+  gem "erb2haml"
 end

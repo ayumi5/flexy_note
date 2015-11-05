@@ -1,0 +1,4 @@
+- model_class = Note
+.page-header
+  %h1= t '.title', :default => [:'helpers.titles.new', 'Your new %{model.downcase}'], :model => model_class.model_name.human.titleize
+= render :partial => 'form'
