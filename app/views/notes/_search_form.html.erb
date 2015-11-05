@@ -1,4 +1,15 @@
-<%=simple_form_for :note, as: :search, url: notes_path, method: :get, as: :search do |f|%>
+<%=simple_form_for :note, as: :search, url: notes_path, method: :get,
+  html: { class: 'form-horizontal search note' } do |f|%>
   <%=f.input :query, label: 'text' %>
-  <%=f.submit :search %>
+  <div class='note_date'>
+    <%=f.input :min_date, label: 'start date', wrapper: :horizontal_input_group, wrapper_html: {class: 'col-sm-6'} do %>
+      <%= f.input_field :min_date, class: 'form-control', 'data-provide' => 'datepicker' %>
+      <span class='input-group-addon'><i class='fa fa-calendar fa-lg'></i></span>
+    <% end %>
+    <%=f.input :max_date, label: 'end date', wrapper: :horizontal_input_group, wrapper_html: {class: 'col-sm-6'} do %>
+      <%= f.input_field :max_date, class: 'form-control', 'data-provide' => 'datepicker' %>
+      <span class='input-group-addon'><i class='fa fa-calendar fa-lg'></i></span>
+    <% end %>
+  </div>
+  <%=f.submit :search, class: 'btn btn-default' %>
 <% end %>
