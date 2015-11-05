@@ -22,5 +22,7 @@ module FlexyNote
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    config.react.jsx_transformer_class = React::JSX::JSXTransformer
   end
 end

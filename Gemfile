@@ -19,6 +19,9 @@ gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-sass', '~> 4.4.0'
 gem 'haml-rails'
 
+#frontend
+gem 'react-rails', '~> 1.4.0'
+
 #form
 gem 'simple_form'
 gem 'rails4-autocomplete'
