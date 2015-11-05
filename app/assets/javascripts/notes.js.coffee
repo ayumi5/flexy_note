@@ -1,0 +1,2 @@
+flexynote.notes =
+  index: ->

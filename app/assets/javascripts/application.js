@@ -18,3 +18,7 @@
 //= require bootstrap-datepicker
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  loader.init();
+});
