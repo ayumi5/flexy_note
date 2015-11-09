@@ -5,7 +5,7 @@ var NoteResult = React.createClass({
     return this.props.notes;
   },
   
-  handleCommentSubmit: function(formData, action){
+  handleNoteSubmit: function(formData, action){
     $.ajax({
       data: formData,
       url: action,
@@ -19,8 +19,12 @@ var NoteResult = React.createClass({
   render: function() {
     return (
       <div className='note-results'>
-        <NoteSearchForm onCommentSubmit={this.handleCommentSubmit} />
-        <NoteListing notes={this.state.notes} />
+        <div className='search-form-wrapper'>
+          <NoteSearchForm onNoteSubmit={this.handleNoteSubmit} />
+        </div>
+        <div className='note-listing-wrapper'>
+          <NoteListing notes={this.state.notes} />
+        </div>
       </div>
     )
   }
