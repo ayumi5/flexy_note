@@ -36,7 +36,18 @@ class NotesController < ApplicationController
   end
   
   def destroy
-    Note.find(params[:id]).destroy!
+    destroy = Note.find(params[:id]).destroy!
+    if search_params?
+      @search = NotesSearch.new(params[:note])
+      @notes = { notes: @search.search.only(:id).load }
+    else
+      @notes = { notes: Note.all }
+    end
+
+    respond_to do |format|
+      format.html { redirect_to notes_path }
+      format.json { render json: @notes[:notes] }
+    end
   end
 
   private

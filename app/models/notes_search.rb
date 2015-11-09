@@ -12,7 +12,7 @@ class NotesSearch
   
   def query_string
     index.query(query_string: {fields:[:title, :category, :content, :url],
-                query: query, default_operator: 'and' }) if query?
+                query: query + '*', default_operator: 'and' }) if query?
   end
   
   def date_filter
