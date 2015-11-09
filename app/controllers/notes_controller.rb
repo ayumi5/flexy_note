@@ -5,12 +5,16 @@ class NotesController < ApplicationController
   end
   
   def index
-    puts "search_params?", search_params?
     if search_params?
       @search = NotesSearch.new(params[:note])
-      @notes = @search.search.only(:id).load
+      @notes = { notes: @search.search.only(:id).load }
     else
-      @notes = Note.all
+      @notes = { notes: Note.all }
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @notes[:notes] }
     end
   end
   
