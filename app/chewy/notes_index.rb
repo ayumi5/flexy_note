@@ -13,6 +13,6 @@ class NotesIndex < Chewy::Index
     field :content
     field :category, value: -> { category }
     field :url
-    field :updated, type: 'date', include_in_all: false, value: -> { updated_at }
+    field :updated_at, type: 'date'
   end
 end

@@ -1,8 +1,9 @@
 flexynote.notes =
   index: ->
     $(window).load ->
-      $('.datepicker').datepicker({
-          todayHighlight: true,
-          clearBtn: true,
-          autoclose: true
-      })
+      $('.datepicker').datepicker(
+        format: 'yyyy/mm/dd'
+        clearBtn: true
+        todayHighlight: true
+      ).on 'changeDate', ->
+          $(this).trigger 'change'

@@ -11,7 +11,7 @@ class NotesController < ApplicationController
     else
       @notes = { notes: Note.all }
     end
-
+    
     respond_to do |format|
       format.html
       format.json { render json: @notes[:notes] }
@@ -55,7 +55,7 @@ class NotesController < ApplicationController
   def search_params?
     if params[:note]
       values_exist = params[:note].values.map(&:present?)
-      values_exist.uniq.first
+      values_exist.uniq.include? true
     end
   end
   

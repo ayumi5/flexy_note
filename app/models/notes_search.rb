@@ -1,5 +1,6 @@
 class NotesSearch
   include ActiveModel::Model
+  include DateHelper
   attr_accessor :query, :min_date, :max_date
   
   def index
@@ -20,10 +21,19 @@ class NotesSearch
       body.merge!(gte: min_date) if min_date?
       body.merge!(lte: max_date) if max_date?
     end
+
     index.filter(range: {update: body}) if body.present?
   end
   
   private
+  
+  def min_date
+    format_date_str(@min_date)
+  end
+  
+  def max_date
+    format_date_str(@max_date)
+  end
   
   def query?
     query.present?
