@@ -16,6 +16,18 @@ var NoteResult = React.createClass({
       }.bind(this)
     });
   },
+  handleNoteDelete: function(noteId){
+    $.ajax({
+      data: {id: noteId},
+      url: '/notes/' + noteId,
+      type: 'DELETE',
+      dataType: 'json',
+      success: function(data) {
+        this.setState( { notes: data }, function(){
+        })
+      }.bind(this)
+    });
+  },
   render: function() {
     return (
       <div className='note-results'>
@@ -23,7 +35,7 @@ var NoteResult = React.createClass({
           <NoteSearchForm onNoteSubmit={this.handleNoteSubmit} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} />
+          <NoteListing notes={this.state.notes} handleNoteDelete={this.handleNoteDelete} />
         </div>
       </div>
     )
