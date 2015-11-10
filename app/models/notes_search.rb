@@ -17,23 +17,16 @@ class NotesSearch
   end
   
   def date_filter
+    format_min_date = format_date_str(min_date)
+    format_max_date = format_date_str(max_date)
     body = {}.tap do |body|
       body.merge!(gte: min_date) if min_date?
-      body.merge!(lte: max_date) if max_date?
+      body.merge!(lte: format_max_date) if max_date?
     end
-
-    index.filter(range: {update: body}) if body.present?
+    index.filter(range: {updated_at: body}) if body.present?
   end
   
   private
-  
-  def min_date
-    format_date_str(@min_date)
-  end
-  
-  def max_date
-    format_date_str(@max_date)
-  end
   
   def query?
     query.present?
