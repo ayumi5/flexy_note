@@ -1,6 +1,6 @@
 = render partial: 'search_form'
 
-= react_component('NoteResult', notes: @notes.as_json)
+= react_component('NoteResult', notes: @result.as_json)
                                                                          
 -# = link_to t('.new', :default => t("helpers.links.new")), 
 -#   new_note_path,                                         
