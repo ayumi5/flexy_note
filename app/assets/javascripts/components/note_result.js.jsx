@@ -2,7 +2,13 @@
 
 var NoteResult = React.createClass({
   getInitialState: function(){
-    return {notes: this.props.notes, showModal: false };
+    return {notes: this.props.notes};
+  },
+  handleModalClose: function(){
+    this.setState({showModal: false});
+  },
+  handleModalOpen: function(){
+    this.setState({showModal: true});
   },
   
   handleNoteSubmit: function(formData, action){
@@ -35,8 +41,9 @@ var NoteResult = React.createClass({
           <NoteSearchForm onNoteSubmit={this.handleNoteSubmit} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleNoteDelete={this.handleNoteDelete} />
+          <NoteListing notes={this.state.notes} handleNoteDelete={this.handleNoteDelete} handleModalOpen={this.handleModalOpen}/>
         </div>
+        
       </div>
     )
   }

@@ -3,7 +3,7 @@ var NoteViewModal = React.createClass({
   render: function(){
     return (
       <div className='note-view-modal'>
-        <Modal.Dialog>
+        <Modal show={false} onHide={this.props.handleModalClose}>
           <Modal.Header>
             <Modal.Title>Modal title</Modal.Title>
           </Modal.Header>
@@ -16,7 +16,7 @@ var NoteViewModal = React.createClass({
             something
           </Modal.Footer>
 
-        </Modal.Dialog>
+        </Modal>
       </div>
     )
   }

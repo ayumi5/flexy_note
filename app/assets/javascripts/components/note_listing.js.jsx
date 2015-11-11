@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 
 var NoteListing = React.createClass({
+  
   render: function() {
     var Notes = this.props.notes.map(function(note){
-      return <NoteBody note={note} key={note.id} handleNoteDelete={this.props.handleNoteDelete}/>
+      return <NoteBody note={note} key={note.id} handleNoteDelete={this.props.handleNoteDelete} handleModalOpen={this.props.handleModalOpen}/>
     }.bind(this));
     
     return (
