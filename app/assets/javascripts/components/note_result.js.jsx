@@ -59,7 +59,7 @@ var NoteResult = React.createClass({
     return (
       <div className='note-results'>
         <div className='search-form-wrapper'>
-          <NoteSearchForm onNoteSubmit={this.handleNoteSubmit} />
+          <NoteSearchForm onNoteSubmit={this.handleNoteSubmit} categories={this.state.categories}/>
         </div>
         <div className='note-listing-wrapper'>
           <NoteListing notes={this.state.notes} handleNoteDelete={this.handleNoteDelete} handleModalOpen={this.handleModalOpen}/>

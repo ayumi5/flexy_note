@@ -9,6 +9,9 @@ var NoteSearchForm = React.createClass({
     this.props.onNoteSubmit(formData, this.refs.form.action)
   },
   render: function() {
+    var CategoryOptions = this.props.categories.map(function(category){
+      return <option key={category.id}>{category.name}</option>
+    });
     return (
       <form ref='form' className='note-search-form' role='form' action='/notes' method='get' id='search-form'>
         <div className='row'>
@@ -18,7 +21,7 @@ var NoteSearchForm = React.createClass({
             </div>
             <div className='category'>
              <select className='form-control'>
-               <option>All</option>
+              {CategoryOptions}
              </select>
            </div>
             <div className='note-date form-inline'>
