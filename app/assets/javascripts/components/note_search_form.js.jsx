@@ -16,6 +16,11 @@ var NoteSearchForm = React.createClass({
             <div className='query'>
               <input type='text' ref='query' className='col-sm-6 form-control' onChange={this.handleChange} /> 
             </div>
+            <div className='category'>
+             <select className='form-control'>
+               <option>All</option>
+             </select>
+           </div>
             <div className='note-date form-inline'>
               <div className='input-group col-sm-4'>
                 <input type='text' className='form-control min-date datepicker' ref='min_date' onSelect={this.handleChange} />

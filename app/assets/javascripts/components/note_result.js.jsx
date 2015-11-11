@@ -16,6 +16,7 @@ var NoteResult = React.createClass({
       }.bind(this)
     });
   },
+  
   handleNoteDelete: function(noteId){
     $.ajax({
       data: {id: noteId},
