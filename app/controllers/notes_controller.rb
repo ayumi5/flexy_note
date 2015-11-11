@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  include NotesHelper
   autocomplete :note, :category
   before_action :find_note_by_id, only: [:show, :destroy]
 
@@ -7,7 +8,7 @@ class NotesController < ApplicationController
     
     respond_to do |format|
       format.html
-      format.json { render json: @notes.to_json(include: {category: {only: [:name]}}) }
+      format.json { render json: {notes: convert_notes_to_json(@notes), categories: convert_categories_to_json(Category.all)} }
     end
   end
   
@@ -33,7 +34,7 @@ class NotesController < ApplicationController
     @notes = get_scoped_notes
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: @notes }
+      format.json { render json: {notes: convert_notes_to_json(@notes)} }
     end
   end
 

@@ -23,6 +23,7 @@ var NoteBody = React.createClass({
   onNoteDelete: function (e) {
     this.props.handleNoteDelete(this.props.note.id)
   },
+  
   onModalOpen: function(e){
     this.props.handleModalOpen
   }

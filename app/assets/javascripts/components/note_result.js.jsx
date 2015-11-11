@@ -2,7 +2,7 @@
 
 var NoteResult = React.createClass({
   getInitialState: function(){
-    return {notes: []};
+    return {notes: [], categories: []};
   },
   //fetch the initial notes from notes_controller
   componentDidMount: function(){
@@ -16,7 +16,7 @@ var NoteResult = React.createClass({
       dataType: 'json',
       success: function(data){
         if(this.isMounted()){
-          this.setState({notes: data})
+          this.setState(data)
         }
       }.bind(this)
     })
@@ -37,7 +37,7 @@ var NoteResult = React.createClass({
       type: 'GET',
       dataType: 'json',
       success: function(data) {
-        this.setState( { notes: data } )
+        this.setState( data )
       }.bind(this)
     });
   },
@@ -49,7 +49,7 @@ var NoteResult = React.createClass({
       type: 'DELETE',
       dataType: 'json',
       success: function(data) {
-        this.setState( { notes: data }, function(){
+        this.setState( data, function(){
         })
       }.bind(this)
     });
