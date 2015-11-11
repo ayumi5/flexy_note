@@ -3,11 +3,11 @@ class NotesController < ApplicationController
   before_action :find_note_by_id, only: [:show, :destroy]
 
   def index
-    @result = get_search_result
+    @notes = get_search_result
     
     respond_to do |format|
       format.html
-      format.json { render json: @result[:notes] }
+      format.json { render json: @notes }
     end
   end
   
@@ -30,16 +30,16 @@ class NotesController < ApplicationController
   
   def destroy
     @note.destroy!
-    @result = get_search_result
+    @notes = get_search_result
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: @result[:notes] }
+      format.json { render json: @notes }
     end
   end
 
   private
   
-  def search_params?
+  def search_params_exist?
     if params[:note]
       values_exist = params[:note].values.map(&:present?)
       values_exist.uniq.include? true
@@ -55,11 +55,11 @@ class NotesController < ApplicationController
   end
   
   def get_search_result
-    if search_params?
+    if search_params_exist?
       @search = NotesSearch.new(params[:note])
-      { notes: @search.search.only(:id).load }
+      @search.search.only(:id).load
     else
-      { notes: Note.all }
+      Note.all
     end
   end
 end

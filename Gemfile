@@ -18,6 +18,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'bootstrap-datepicker-rails', :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 gem 'font-awesome-sass', '~> 4.4.0'
 gem 'haml-rails'
+gem 'react-bootstrap-rails'
 
 #frontend
 gem 'react-rails', '~> 1.4.0'

@@ -2,7 +2,7 @@
 
 var NoteResult = React.createClass({
   getInitialState: function(){
-    return this.props.notes;
+    return {notes: this.props.notes, showModal: false };
   },
   
   handleNoteSubmit: function(formData, action){
