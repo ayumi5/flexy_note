@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Category.create({name: 'test'})
+
 for i in 1..10 do
-  Note.create({ title: "test#{i}", category: "test", content: "this is test #{i}" })
+  Note.create({ title: "test#{i}", category: Category.first.id, content: "this is test #{i}" })
 end

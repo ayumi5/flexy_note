@@ -2,11 +2,30 @@
 
 var NoteResult = React.createClass({
   getInitialState: function(){
-    return {notes: this.props.notes};
+    return {notes: []};
   },
+  //fetch the initial notes from notes_controller
+  componentDidMount: function(){
+    this.getInitialNotes()
+  },
+  
+  getInitialNotes: function(){
+    $.ajax({
+      url: 'notes.json',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data){
+        if(this.isMounted()){
+          this.setState({notes: data})
+        }
+      }.bind(this)
+    })
+  },
+  
   handleModalClose: function(){
     this.setState({showModal: false});
   },
+  
   handleModalOpen: function(){
     this.setState({showModal: true});
   },
@@ -35,6 +54,7 @@ var NoteResult = React.createClass({
       }.bind(this)
     });
   },
+  
   render: function() {
     return (
       <div className='note-results'>

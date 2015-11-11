@@ -14,7 +14,7 @@ var NoteBody = React.createClass({
             <a onClick={this.onNoteDelete}><i className='fa fa-trash fa-lg'></i></a>
           </span>
           <h4>{this.props.note.title}</h4>
-          <p>{this.props.note.category}</p>
+          <h4>{this.props.note.category.name}</h4>
         </div>
       </div>
     )
@@ -24,7 +24,6 @@ var NoteBody = React.createClass({
     this.props.handleNoteDelete(this.props.note.id)
   },
   onModalOpen: function(e){
-    console.log('onModalOpen')
     this.props.handleModalOpen
   }
 });

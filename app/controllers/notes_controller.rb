@@ -3,11 +3,11 @@ class NotesController < ApplicationController
   before_action :find_note_by_id, only: [:show, :destroy]
 
   def index
-    @notes = get_search_result
+    @notes = get_scoped_notes
     
     respond_to do |format|
       format.html
-      format.json { render json: @notes }
+      format.json { render json: @notes.to_json(include: {category: {only: [:name]}}) }
     end
   end
   
@@ -30,7 +30,7 @@ class NotesController < ApplicationController
   
   def destroy
     @note.destroy!
-    @notes = get_search_result
+    @notes = get_scoped_notes
     respond_to do |format|
       format.html { redirect_to notes_path }
       format.json { render json: @notes }
@@ -54,7 +54,7 @@ class NotesController < ApplicationController
     params.require(:note).permit(:title, :category, :content, :url, :tag_list)
   end
   
-  def get_search_result
+  def get_scoped_notes
     if search_params_exist?
       @search = NotesSearch.new(params[:note])
       @search.search.only(:id).load
