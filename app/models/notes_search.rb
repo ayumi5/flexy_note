@@ -1,14 +1,14 @@
 class NotesSearch
   include ActiveModel::Model
   include DateHelper
-  attr_accessor :query, :min_date, :max_date
+  attr_accessor :query, :category, :min_date, :max_date
   
   def index
     NotesIndex
   end
   
   def search
-    [query_string, date_filter].compact.reduce(:merge)
+    [query_string, category_filter, date_filter].compact.reduce(:merge)
   end
   
   def query_string
@@ -26,6 +26,10 @@ class NotesSearch
     index.filter(range: {updated_at: body}) if body.present?
   end
   
+  def category_filter
+    index.filter(term: {category: category}) if category?
+  end
+  
   private
   
   def query?
@@ -38,6 +42,10 @@ class NotesSearch
   
   def max_date?
     max_date.present?
+  end
+  
+  def category?
+    category.present?
   end
   
 end

@@ -3,9 +3,10 @@
 var NoteSearchForm = React.createClass({
   handleChange: function(event) {
     var query = this.refs.query.value.trim();
+    var category = this.refs.category.value.trim();
     var minDate = this.refs.min_date.value.trim();
     var maxDate = this.refs.max_date.value.trim();
-    var formData = {note: {query: query, min_date: minDate, max_date: maxDate}};
+    var formData = {note: {query: query, category: category, min_date: minDate, max_date: maxDate}};
     this.props.onNoteSubmit(formData, this.refs.form.action)
   },
   render: function() {
@@ -20,8 +21,9 @@ var NoteSearchForm = React.createClass({
               <input type='text' ref='query' className='col-sm-6 form-control' onChange={this.handleChange} /> 
             </div>
             <div className='category'>
-             <select className='form-control'>
-              {CategoryOptions}
+             <select className='form-control' ref='category' onChange={this.handleChange}>
+               <option>All</option>
+               {CategoryOptions}
              </select>
            </div>
             <div className='note-date form-inline'>
