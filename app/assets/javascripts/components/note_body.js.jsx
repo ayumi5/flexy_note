@@ -3,7 +3,8 @@
 var NoteBody = React.createClass({
   formatDate: function(dateStr){
     date = new Date(dateStr)
-    return date.getFullYear() + '/' + (date.getMonth()+1) + '/' + date.getDate()
+    //even though the date of the object is already set to local time, javascript thinks it's still UTC time and add +13
+    return date.getUTCFullYear() + '/' + (date.getUTCMonth()+1) + '/' + date.getUTCDate()
   },
 
   render: function() {
@@ -11,9 +12,9 @@ var NoteBody = React.createClass({
     return (
       <div className='panel panel-default col-sm-3 listing'>
         <div className='panel-body'>
-          <p className='date col-sm-6 col-xs-10'>{this.formatDate(this.props.note.updated_at)}</p>
-          <span className='action-icons'>
-            <a onClick={this.onModalOpen}><i className='fa fa-file'></i></a>
+          <p className='date col-sm-6 col-xs-6'>{this.formatDate(this.props.note.updated_at)}</p>
+          <span className='action-icons col-sm-6 col-xs-6'>
+            <a onClick={this.onModalOpen}><i className='fa fa-file fa-lg'></i></a>
             <a href={'/notes/' + noteId + '/edit'}><i className='fa fa-pencil-square-o fa-lg'></i></a>
             <a onClick={this.onNoteDelete}><i className='fa fa-trash fa-lg'></i></a>
           </span>

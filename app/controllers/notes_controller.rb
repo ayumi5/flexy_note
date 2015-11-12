@@ -42,10 +42,9 @@ class NotesController < ApplicationController
   
   def search_params_exist?
     if params[:note]
-      if params[:note][:category] != 'All'
-        values_exist = params[:note].values.map(&:present?)
-        values_exist.uniq.include? true
-      end
+      params[:note][:category] = nil if params[:note][:category] == 'All'
+      values_exist = params[:note].values.map(&:present?)
+      values_exist.uniq.include? true
     end
   end
   
