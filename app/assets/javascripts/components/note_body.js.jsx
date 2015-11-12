@@ -8,8 +8,11 @@ var NoteBody = React.createClass({
   },
   
   onNoteDelete: function (e) {
-    e.preventDefault()
     this.props.handleNoteDelete(this.props.note.id)
+  },
+  
+  onModalEdit: function(e){
+    this.props.handleModalEdit()
   },
   
   render: function() {
@@ -19,10 +22,10 @@ var NoteBody = React.createClass({
         <div className='panel-body'>
           <p className='date col-sm-6 col-xs-6'>{this.formatDate(this.props.note.updated_at)}</p>
           <span className='action-icons col-sm-6 col-xs-6'>
-            <a href={'/notes/' + noteId + '/edit'}><i className='fa fa-pencil-square-o fa-lg'></i></a>
-            <a onClick={this.onNoteDelete}><i className='fa fa-trash fa-lg'></i></a>
+            <a href='#' onClick={this.onModalEdit} data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }><i className='fa fa-pencil-square-o fa-lg'></i></a>
+            <a href='#' onClick={this.onNoteDelete}><i className='fa fa-trash fa-lg'></i></a>
           </span>
-          <div data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }>
+          <div className='panel-content' data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }>
             <h3>{this.props.note.title}</h3>
             <h4>{this.props.note.category.name}</h4>
             <p className='body'>{this.props.note.content}</p>
