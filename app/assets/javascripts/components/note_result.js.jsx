@@ -51,6 +51,11 @@ var NoteResult = React.createClass({
     this.setState({editModal: true})
   },
   
+  handleModalView: function(){
+    this.setState({editModal: false})
+  },
+  
+  
   render: function() {
     return (
       <div className='note-results'>
@@ -58,7 +63,7 @@ var NoteResult = React.createClass({
           <NoteSearchForm onNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleModalEdit={this.handleModalEdit} handleNoteDelete={this.handleNoteDelete}  editModal={this.state.editModal} handleNoteSubmit={this.handleNoteSubmit} />
+          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} handleNoteDelete={this.handleNoteDelete}  editModal={this.state.editModal} handleModalEdit={this.handleModalEdit} handleModalView={this.handleModalView}  />
         </div>
         
       </div>

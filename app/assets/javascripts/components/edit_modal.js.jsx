@@ -4,6 +4,11 @@ var EditModal = React.createClass({
     var formData = {note: {query: ''}}
     this.props.handleNoteSubmit(formData, '/notes')
   },
+  
+  onMoalView: function(e){
+    this.props.handleModalView()
+  },
+  
   render: function(){
     return (
       <div className='modal-content edit-modal'>
@@ -23,7 +28,7 @@ var EditModal = React.createClass({
             </div>
             <div className='modal-footer'>
               <button type="submit" className="btn btn-primary">Submit</button>
-              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.onMoalView}>Close</button>
             </div>
           </form>
         </div>
