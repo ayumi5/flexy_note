@@ -2,7 +2,7 @@
 
 var NoteResult = React.createClass({
   getInitialState: function(){
-    return {notes: [], categories: []};
+    return {notes: [], categories: [], editModal: false };
   },
   //fetch the initial notes from notes_controller
   componentDidMount: function(){
@@ -20,14 +20,6 @@ var NoteResult = React.createClass({
         }
       }.bind(this)
     })
-  },
-  
-  handleModalClose: function(){
-    this.setState({showModal: false});
-  },
-  
-  handleModalOpen: function(){
-    this.setState({showModal: true});
   },
   
   handleNoteSubmit: function(formData, action){
@@ -55,14 +47,18 @@ var NoteResult = React.createClass({
     });
   },
   
+  handleModalEdit: function(){
+    this.setState({editModal: true})
+  },
+  
   render: function() {
     return (
       <div className='note-results'>
         <div className='search-form-wrapper'>
-          <NoteSearchForm onNoteSubmit={this.handleNoteSubmit} categories={this.state.categories}/>
+          <NoteSearchForm onNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleNoteDelete={this.handleNoteDelete} handleModalOpen={this.handleModalOpen}/>
+          <NoteListing notes={this.state.notes} handleModalEdit={this.handleModalEdit} handleNoteDelete={this.handleNoteDelete}  editModal={this.state.editModal} handleNoteSubmit={this.handleNoteSubmit} />
         </div>
         
       </div>
