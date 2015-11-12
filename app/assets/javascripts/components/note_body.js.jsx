@@ -18,9 +18,11 @@ var NoteBody = React.createClass({
             <a href={'/notes/' + noteId + '/edit'}><i className='fa fa-pencil-square-o fa-lg'></i></a>
             <a onClick={this.onNoteDelete}><i className='fa fa-trash fa-lg'></i></a>
           </span>
-          <h4>{this.props.note.title}</h4>
+          <h3>{this.props.note.title}</h3>
           <h4>{this.props.note.category.name}</h4>
-        </div>
+          <p className='body'>{this.props.note.content}</p>
+          <p className='text-fadeout'></p>
+      </div>
       </div>
     )
   },

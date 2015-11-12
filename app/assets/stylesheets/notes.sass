@@ -15,14 +15,31 @@
   margin: 10px
   padding: 0
   
-  .date
-    text-align: left
-    padding-left: 0
+  .panel-body
+    height: 170px
+    position: relative
+    overflow: hidden
+  
+    .date
+      text-align: left
+      padding-left: 0
+      
+    .action-icons
+      padding-right: 0
+      text-align: right
+      margin-bottom: 10px
+      i
+        margin: 5px
+        color: black
+        
+    .body
+      text-align: left
     
-  .action-icons
-    padding-right: 0
-    text-align: right
-    margin-bottom: 10px
-    i
-      margin: 5px
-      color: black
+    .text-fadeout
+      margin: 0
+      height: 20%
+      width: 100%
+      position: absolute
+      bottom: 0
+      left: 0
+      background-image: linear-gradient(to bottom, transparent, white)
