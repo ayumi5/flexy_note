@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
   include NotesHelper
   autocomplete :note, :category
-  before_action :find_note_by_id, only: [:show, :destroy]
+  before_action :find_note_by_id, only: [:destroy]
 
   def index
     @notes = get_scoped_notes
