@@ -1,6 +1,5 @@
 var ViewModal = React.createClass({
   onModalEdit: function(){
-    console.log('onModalEdit')
     this.props.handleModalEdit()
   },
   render: function(){

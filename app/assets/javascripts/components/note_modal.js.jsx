@@ -1,7 +1,7 @@
 var NoteModal = React.createClass({
   render: function(){
     if (this.props.editModal) {
-      var ModalContent = <EditModal note={this.props.note} handleNoteSubmit={this.props.handleNoteSubmit} handleModalView={this.props.handleModalView} />
+      var ModalContent = <EditModal note={this.props.note} handleModalView={this.props.handleModalView}  handleNoteUpdate={this.props.handleNoteUpdate} />
     } else {
       var ModalContent = <ViewModal note={this.props.note} handleModalEdit={this.props.handleModalEdit} />
     }

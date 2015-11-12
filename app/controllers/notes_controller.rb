@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
   include NotesHelper
   autocomplete :note, :category
-  before_action :find_note_by_id, only: [:destroy]
+  before_action :find_note_by_id, only: [:destroy, :edit, :update]
 
   def index
     @notes = get_scoped_notes
@@ -13,6 +13,7 @@ class NotesController < ApplicationController
   end
   
   def create
+    puts "note_params", note_params
     @notes = Note.create(note_params)
     if @notes.save
       redirect_to @notes, notice: 'The note has been successfully created.'
@@ -25,8 +26,14 @@ class NotesController < ApplicationController
     @note = Note.new
   end
   
-  def edit
-    @note = Note.new
+  def update
+    @note.update_attributes!(note_params)
+    @notes = Note.all  
+    
+    respond_to do |format|
+      format.html { redirect_to notes_path }
+      format.json { render json: {notes: convert_notes_to_json(@notes)} }
+    end
   end
   
   def destroy
@@ -53,7 +60,7 @@ class NotesController < ApplicationController
   end
   
   def note_params
-    params.require(:note).permit(:title, :category, :content, :url, :tag_list)
+    params.require(:note).permit(:title, :content, :url, :tag_list)
   end
   
   def get_scoped_notes

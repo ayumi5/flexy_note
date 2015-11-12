@@ -1,8 +1,11 @@
 var EditModal = React.createClass({
-  onNoteSubmit: function(e){
+  onNoteUpdate: function(e){
     e.preventDefault()
-    var formData = {note: {query: ''}}
-    this.props.handleNoteSubmit(formData, '/notes')
+    var title = this.refs.title.value.trim();
+    var category = this.refs.category.value.trim();
+    var content = this.refs.content.value.trim();
+    var formData={title: title, content: content};
+    this.props.handleNoteUpdate(formData, this.props.note.id);
   },
   
   onMoalView: function(e){
@@ -13,18 +16,18 @@ var EditModal = React.createClass({
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.onMoalView}>
             <span aria-hidden="true">&times;</span>
           </button>
-          <form ref='form' onSubmit={this.onNoteSubmit}>
+          <form ref='form' onSubmit={this.onNoteUpdate}>
             <div className='form-group'>
-              <input className='form-control edit-title' defaultValue={this.props.note.title}/>
-            <div className='modal-body'>
-              <h3>Category</h3>
-              <input className='form-control' defaultValue={this.props.note.category.name} />
-              <h3>Text</h3>
-              <textarea className='form-control' defaultValue={this.props.note.content} rows='10' />
-            </div>
+              <input ref='title' className='form-control edit-title' defaultValue={this.props.note.title}/>
+              <div className='modal-body'>
+                <h3>Category</h3>
+                <input ref='category' className='form-control' defaultValue={this.props.note.category.name} />
+                <h3>Text</h3>
+                <textarea ref='content' className='form-control' defaultValue={this.props.note.content} rows='10' />
+              </div>
             </div>
             <div className='modal-footer'>
               <button type="submit" className="btn btn-primary">Submit</button>
