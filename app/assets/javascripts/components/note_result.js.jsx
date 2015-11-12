@@ -22,36 +22,11 @@ var NoteResult = React.createClass({
     })
   },
   
-  handleNoteSubmit: function(formData, action){
+  handleNoteSubmit: function(formData, action, type){
     $.ajax({
       data: formData,
       url: action,
-      type: 'GET',
-      dataType: 'json',
-      success: function(data) {
-        this.setState( data )
-      }.bind(this)
-    });
-  },
-  
-  handleNoteDelete: function(noteId){
-    $.ajax({
-      data: {id: noteId},
-      url: '/notes/' + noteId,
-      type: 'DELETE',
-      dataType: 'json',
-      success: function(data) {
-        this.setState( data, function(){
-        })
-      }.bind(this)
-    });
-  },
-  
-  handleNoteUpdate: function(formData, noteId){
-    $.ajax({
-      data: {note: formData},
-      url: '/notes/' + noteId,
-      type: 'PUT',
+      type: type,
       dataType: 'json',
       success: function(data) {
         this.setState( data )
@@ -72,10 +47,10 @@ var NoteResult = React.createClass({
     return (
       <div className='note-results'>
         <div className='search-form-wrapper'>
-          <NoteSearchForm onNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
+          <NoteSearchForm handleNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} handleNoteDelete={this.handleNoteDelete}  editModal={this.state.editModal} handleModalEdit={this.handleModalEdit} handleModalView={this.handleModalView} handleNoteUpdate={this.handleNoteUpdate} />
+          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit} handleModalView={this.handleModalView} />
         </div>
         
       </div>

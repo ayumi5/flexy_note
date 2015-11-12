@@ -4,8 +4,9 @@ var EditModal = React.createClass({
     var title = this.refs.title.value.trim();
     var category = this.refs.category.value.trim();
     var content = this.refs.content.value.trim();
-    var formData={title: title, content: content};
-    this.props.handleNoteUpdate(formData, this.props.note.id);
+    var formData= { note: {title: title, content: content}};
+    var action ='/notes/' + this.props.note.id
+    this.props.handleNoteSubmit(formData, action, 'PUT');
   },
   
   onMoalView: function(e){

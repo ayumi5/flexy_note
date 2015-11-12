@@ -7,8 +7,10 @@ var NoteBody = React.createClass({
     return date.getUTCFullYear() + '/' + (date.getUTCMonth()+1) + '/' + date.getUTCDate()
   },
   
-  onNoteDelete: function (e) {
-    this.props.handleNoteDelete(this.props.note.id)
+  onNoteDelete: function(e){
+    e.preventDefault()
+    var action = '/notes/' + this.props.note.id
+    this.props.handleNoteSubmit({}, action, 'Delete')
   },
   
   onModalEdit: function(e){
@@ -32,7 +34,7 @@ var NoteBody = React.createClass({
             <p className='text-fadeout'></p>
           </div>
         </div>
-        <NoteModal note={this.props.note} editModal={this.props.editModal} handleModalEdit={this.props.handleModalEdit} handleModalView={this.props.handleModalView} handleNoteUpdate={this.props.handleNoteUpdate} />
+        <NoteModal note={this.props.note} editModal={this.props.editModal} handleModalEdit={this.props.handleModalEdit} handleModalView={this.props.handleModalView} handleNoteSubmit={this.props.handleNoteSubmit} />
       </div>
     )
   }
