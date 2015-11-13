@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var NoteResult = React.createClass({
   getInitialState: function(){
     return {notes: [], categories: [], editModal: false };

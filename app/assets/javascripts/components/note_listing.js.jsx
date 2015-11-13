@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var NoteListing = React.createClass({
   
   render: function() {
@@ -10,6 +8,7 @@ var NoteListing = React.createClass({
     return (
       <div className='note-listing col-sm-11 col-sm-offset-1'>
         {Notes}
+        <NoteCreateBox handleModalEdit={this.props.handleModalEdit} handleNoteSubmit={this.props.handleNoteSubmit} />
       </div>
     )
   }

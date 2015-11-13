@@ -1,4 +1,4 @@
-var EditModal = React.createClass({
+var CreateModal = React.createClass({
   onNoteUpdate: function(e){
     e.preventDefault()
     var title = this.refs.title.value.trim();
@@ -19,14 +19,14 @@ var EditModal = React.createClass({
           <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.onModalView}>
             <span aria-hidden="true">&times;</span>
           </button>
-          <form ref='form' role='form' action={('notes/' + this.props.note.id) || 'notes'} method='PUT' onSubmit={this.onNoteUpdate}>
+          <form ref='form' role='form' action="notes" method='PUT' onSubmit={this.onNoteUpdate}>
             <div className='form-group'>
-              <input ref='title' className='form-control edit-title' defaultValue={this.props.note.title}/>
+              <input ref='title' className='form-control edit-title'/>
               <div className='modal-body'>
                 <h3>Category</h3>
-                <input ref='category' className='form-control' defaultValue={this.props.note.category.name} />
+                <input ref='category' className='form-control' />
                 <h3>Text</h3>
-                <textarea ref='content' className='form-control' defaultValue={this.props.note.content} rows='10' />
+                <textarea ref='content' className='form-control' />
               </div>
             </div>
             <div className='modal-footer'>
