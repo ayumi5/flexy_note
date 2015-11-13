@@ -13,12 +13,12 @@ class NotesController < ApplicationController
   end
   
   def create
-    puts "note_params", note_params
-    @notes = Note.create(note_params)
-    if @notes.save
-      redirect_to @notes, notice: 'The note has been successfully created.'
-    else
-      render 'new'
+    @note = Note.create(note_params)
+    @note.save
+    @notes = Note.all
+    respond_to do |format|
+      format.html { redirect_to notes_path }
+      format.json { render json: {notes: convert_notes_to_json(@notes)} }
     end
   end
   
@@ -60,7 +60,7 @@ class NotesController < ApplicationController
   end
   
   def note_params
-    params.require(:note).permit(:title, :content, :url, :tag_list)
+    params.require(:note).permit(:title, :category_id, :content, :url, :tag_list)
   end
   
   def get_scoped_notes

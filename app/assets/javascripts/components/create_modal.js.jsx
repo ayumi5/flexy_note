@@ -4,8 +4,12 @@ var CreateModal = React.createClass({
     var title = this.refs.title.value.trim();
     var category = this.refs.category.value.trim();
     var content = this.refs.content.value.trim();
-    var formData= { note: {title: title, content: content}};
-    this.props.handleNoteSubmit(formData, this.refs.form.action, 'PUT');
+    var formData= { note: {title: title, category_id: 3, content: content}};
+    this.props.handleNoteSubmit(formData, this.refs.form.action, 'POST');
+    this.refs.title.value = "" ;
+    this.refs.category.value = "";
+    this.refs.content.value = "";
+    
   },
   
   onModalView: function(e){
@@ -19,7 +23,7 @@ var CreateModal = React.createClass({
           <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.onModalView}>
             <span aria-hidden="true">&times;</span>
           </button>
-          <form ref='form' role='form' action="notes" method='PUT' onSubmit={this.onNoteUpdate}>
+          <form ref='form' role='form' action="notes" method='POST' onSubmit={this.onNoteUpdate}>
             <div className='form-group'>
               <input ref='title' className='form-control edit-title'/>
               <div className='modal-body'>
