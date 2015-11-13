@@ -4,7 +4,7 @@ var NoteListing = React.createClass({
   
   render: function() {
     var Notes = this.props.notes.map(function(note){
-      return <NoteBody note={note} key={note.id} handleNoteSubmit={this.props.handleNoteSubmit} editModal={this.props.editModal} handleModalEdit={this.props.handleModalEdit}　handleModalView={this.props.handleModalView} />
+      return <NoteBody note={note} key={note.id} handleNoteSubmit={this.props.handleNoteSubmit} editModal={this.props.editModal} handleModalEdit={this.props.handleModalEdit} />
     }.bind(this));
     
     return (

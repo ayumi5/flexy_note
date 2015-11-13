@@ -5,7 +5,7 @@ var NoteSearchForm = React.createClass({
     var minDate = this.refs.min_date.value.trim();
     var maxDate = this.refs.max_date.value.trim();
     var formData = {note: {query: query, category: category, min_date: minDate, max_date: maxDate}};
-    this.props.handleNoteSubmit(formData, this.refs.form.action, 'Get')
+    this.props.handleNoteSubmit(formData, this.refs.form.action, this.refs.form.method)
   },
   render: function() {
     var CategoryOptions = this.props.categories.map(function(category){
