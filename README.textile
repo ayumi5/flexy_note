@@ -1,0 +1,10 @@
+h1. Flexy Note
+
+h2. System dependencies
+p. This app requires elasticsearch 1.4.1
+
+h2. Starting app
+p. Create database and run rails server and elasticsearch
+
+h2. Ruby version
+p. 2.0.0p481
