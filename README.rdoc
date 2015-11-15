@@ -1,10 +1,10 @@
 == Flexy Note
 
 * System dependencies
-  This app requires elasticsearch 1.4.1
+This app requires elasticsearch 1.4.1
 
 * Starting app
-  Create database and run rails server and elasticsearch
+Create database and run rails server and elasticsearch
 
 * Ruby version
-  2.0.0p481
+2.0.0p481
