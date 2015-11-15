@@ -27,7 +27,6 @@ class NotesController < ApplicationController
   end
   
   def update
-    puts "note_params", note_params.inspect
     @note.update_attributes!(note_params)
     @notes = Note.all  
     
