@@ -27,6 +27,7 @@ class NotesController < ApplicationController
   end
   
   def update
+    puts "note_params", note_params.inspect
     @note.update_attributes!(note_params)
     @notes = Note.all  
     
@@ -59,7 +60,13 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
   end
   
+  def seach_for_category
+    @caregory_name = params[:note][:category] if params[:note][:category]
+    params[:note][:category_id] = Category.find_or_create_by({name: @caregory_name}).id
+  end
+  
   def note_params
+    seach_for_category
     params.require(:note).permit(:title, :category_id, :content, :url, :tag_list)
   end
   

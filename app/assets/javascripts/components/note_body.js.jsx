@@ -25,7 +25,7 @@ var NoteBody = React.createClass({
             <a href='#' onClick={this.onModalEdit} data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }><i className='fa fa-pencil-square-o fa-lg'></i></a>
             <a href='#' onClick={this.onNoteDelete}><i className='fa fa-trash fa-lg'></i></a>
           </span>
-          <div className='panel-content' data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }>
+          <div className='cursor-pointer' data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }>
             <h3>{this.props.note.title}</h3>
             <h4>{this.props.note.category.name}</h4>
             <p className='body'>{this.props.note.content}</p>

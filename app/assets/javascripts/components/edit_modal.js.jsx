@@ -4,7 +4,7 @@ var EditModal = React.createClass({
     var title = this.refs.title.value.trim();
     var category = this.refs.category.value.trim();
     var content = this.refs.content.value.trim();
-    var formData= { note: {title: title, content: content}};
+    var formData= { note: {title: title, category: category, content: content}};
     this.props.handleNoteSubmit(formData, this.refs.form.action, 'PUT');
   },
   

@@ -1,10 +1,10 @@
 var CreateModal = React.createClass({
-  onNoteUpdate: function(e){
+  onNoteCreate: function(e){
     e.preventDefault()
     var title = this.refs.title.value.trim();
     var category = this.refs.category.value.trim();
     var content = this.refs.content.value.trim();
-    var formData= { note: {title: title, category_id: 3, content: content}};
+    var formData= { note: {title: title, category: category, content: content}};
     this.props.handleNoteSubmit(formData, this.refs.form.action, 'POST');
     this.refs.title.value = "" ;
     this.refs.category.value = "";
@@ -23,14 +23,14 @@ var CreateModal = React.createClass({
           <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.onModalView}>
             <span aria-hidden="true">&times;</span>
           </button>
-          <form ref='form' role='form' action="notes" method='POST' onSubmit={this.onNoteUpdate}>
+          <form ref='form' role='form' action="notes" method='POST' onSubmit={this.onNoteCreate}>
             <div className='form-group'>
-              <input ref='title' className='form-control edit-title'/>
+              <input ref='title' className='form-control edit-title' placeholder="Type in title here"/>
               <div className='modal-body'>
                 <h3>Category</h3>
                 <input ref='category' className='form-control' />
                 <h3>Text</h3>
-                <textarea ref='content' className='form-control' />
+                <textarea ref='content' className='form-control' rows="10" />
               </div>
             </div>
             <div className='modal-footer'>
