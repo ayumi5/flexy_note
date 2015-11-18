@@ -2,7 +2,7 @@ flexynote.notes =
   index: ->
     $(document).ready ->
       setTimeout ->
-        $('.datepicker').datepicker(
+        $('.input-group.date').datepicker(
           format: 'yyyy/mm/dd'
           todayHighlight: true
         ).on 'changeDate', ->

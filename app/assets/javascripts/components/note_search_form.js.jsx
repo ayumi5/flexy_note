@@ -27,13 +27,13 @@ var NoteSearchForm = React.createClass({
              </select>
            </div>
             <div className='note-date form-inline'>
-              <div className='input-group col-sm-4'>
-                <input type='text' className='form-control min-date datepicker' ref='min_date' onSelect={this.handleChange} />
+              <div className='input-group date col-sm-4'>
+                <input type='text' className='form-control min-date' ref='min_date' onSelect={this.handleChange} />
                 <span className='input-group-addon'><i className='fa fa-calendar'></i></span>
               </div>
               <span>—</span>
-              <div className='input-group col-sm-4'>
-                <input type='text' className='form-control max-date datepicker' ref='max_date' onSelect={this.handleChange} />
+              <div className='input-group date col-sm-4'>
+                <input type='text' className='form-control max-date' ref='max_date' onSelect={this.handleChange} />
                 <span className='input-group-addon'><i className='fa fa-calendar'></i></span>
               </div>
             </div>
