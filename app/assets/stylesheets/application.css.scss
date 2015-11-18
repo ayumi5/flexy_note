@@ -2,11 +2,11 @@
  *= require_tree .
  *= require_self
  *= require jquery-ui
- *= require bootstrap-datepicker3
+ *= require bootstrap-datepicker
  */
  
  @import 'layout';
  @import 'notes';
- @import 'bootstrap-datepicker3';
+ @import 'bootstrap-datepicker';
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
