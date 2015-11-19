@@ -8,19 +8,19 @@ class NotesSearch
   end
   
   def search
-    [query_string, category_filter, date_filter].compact.reduce(:merge)
+    [query_string, category_filter, date_filter, sorting].compact.reduce(:merge)
   end
   
   def query_string
     index.query(query_string: {fields:[:title, :category, :content, :url],
-                query: '*' + query + '*', default_operator: 'and' }) if query?
+                query: '*' + query + '*', default_operator: 'or' }) if query?
   end
   
   def date_filter
     format_min_date = format_date_str(min_date)
     format_max_date = format_date_str(max_date)
     body = {}.tap do |body|
-      body.merge!(gte: min_date) if min_date?
+      body.merge!(gte: format_min_date) if min_date?
       body.merge!(lte: format_max_date) if max_date?
     end
     index.filter(range: {updated_at: body}) if body.present?
@@ -28,6 +28,10 @@ class NotesSearch
   
   def category_filter
     index.filter(term: {category: category}) if category?
+  end
+  
+  def sorting
+    index.order({updated_at: :asc})
   end
   
   private

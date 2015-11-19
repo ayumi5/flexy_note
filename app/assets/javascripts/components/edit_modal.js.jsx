@@ -13,6 +13,9 @@ var EditModal = React.createClass({
   },
   
   render: function(){
+    if (this.props.note.category){
+      var categoryName = this.props.note.category.name;
+    }
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>
@@ -24,7 +27,7 @@ var EditModal = React.createClass({
               <input ref='title' className='form-control edit-title' defaultValue={this.props.note.title}/>
               <div className='modal-body'>
                 <h3>Category</h3>
-                <input ref='category' className='form-control' defaultValue={this.props.note.category.name} />
+                <input ref='category' className='form-control' defaultValue={categoryName} />
                 <h3>Text</h3>
                 <textarea ref='content' className='form-control' defaultValue={this.props.note.content} rows='10' />
               </div>

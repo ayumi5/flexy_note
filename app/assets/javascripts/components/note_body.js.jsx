@@ -17,6 +17,9 @@ var NoteBody = React.createClass({
   
   render: function() {
     var noteId = this.props.note.id;
+    if (this.props.note.category){
+      var categoryName = this.props.note.category.name;
+    }
     return (
       <div className='panel panel-default col-sm-3 listing'>
         <div className='panel-body'>
@@ -27,7 +30,7 @@ var NoteBody = React.createClass({
           </span>
           <div className='cursor-pointer' data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }>
             <h3>{this.props.note.title}</h3>
-            <h4>{this.props.note.category.name}</h4>
+            <h4>{ categoryName }</h4>
             <p className='body'>{this.props.note.content}</p>
             <p className='text-fadeout'></p>
           </div>

@@ -1,13 +1,4 @@
-class NotesIndex < Chewy::Index
-  settings analysis: {
-    analyzer: {
-      title: {
-        tokenizer: 'standard',
-        filter: ['lowercase']
-      }
-    }
-  }
-  
+class NotesIndex < Chewy::Index  
   define_type Note.includes(:category) do
     field :title
     field :content

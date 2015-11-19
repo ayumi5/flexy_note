@@ -14,7 +14,7 @@ var NoteModal = React.createClass({
     
     return (
       <div>
-        <div className='note-view modal fade' id={ 'note-modal' + noteId  }>
+        <div className='note-modal modal fade' id={ 'note-modal' + noteId  }>
           <div className='modal-dialog'>
             { ModalContent }
           </div>

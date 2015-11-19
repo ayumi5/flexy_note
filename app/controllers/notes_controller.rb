@@ -5,7 +5,6 @@ class NotesController < ApplicationController
 
   def index
     @notes = get_scoped_notes
-    
     respond_to do |format|
       format.html
       format.json { render json: {notes: convert_notes_to_json(@notes), categories: convert_categories_to_json(Category.all)} }
@@ -72,9 +71,9 @@ class NotesController < ApplicationController
   def get_scoped_notes
     if search_params_exist?
       @search = NotesSearch.new(params[:note])
-      @search.search.only(:id).load
+      @search.search.only(:id).load.limit(50)
     else
-      Note.all
+      Note.all.order({updated_at: :asc}).limit(50)
     end
   end
 end
