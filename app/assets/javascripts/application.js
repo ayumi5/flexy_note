@@ -20,6 +20,7 @@
 //= require react
 //= require react_ujs
 //= require react_bootstrap
+//= require alloy-editor/alloy-editor-all-min
 //= require components
 //= require_tree .
 

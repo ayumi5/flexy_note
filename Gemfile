@@ -48,4 +48,5 @@ group :development, :test do
   gem "erb2haml"
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem "better_errors"
 end

@@ -60,6 +60,10 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    better_errors (2.0.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -271,6 +275,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 3.4)
+  better_errors
   bootstrap-datepicker-rails!
   byebug
   capybara
