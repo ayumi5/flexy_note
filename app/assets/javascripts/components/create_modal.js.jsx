@@ -17,6 +17,8 @@ var CreateModal = React.createClass({
   },
   
   render: function(){
+    //generate AlloyEditor
+    //AlloyEditor.editable('create-content');
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>
@@ -30,7 +32,7 @@ var CreateModal = React.createClass({
                 <h3>Category</h3>
                 <input ref='category' className='form-control' />
                 <h3>Text</h3>
-                <textarea ref='content' className='form-control' rows="10" />
+                <textarea ref='content' className='form-control' rows="10" id="create-content" />
               </div>
             </div>
             <div className='modal-footer'>
