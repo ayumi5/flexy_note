@@ -11,10 +11,6 @@ var NoteBody = React.createClass({
     this.props.handleNoteSubmit({}, action, 'Delete')
   },
   
-  onModalEdit: function(e){
-    this.props.handleModalEdit(true)
-  },
-  
   render: function() {
     var noteId = this.props.note.id;
     if (this.props.note.category){
@@ -25,7 +21,7 @@ var NoteBody = React.createClass({
         <div className='panel-body'>
           <p className='date col-sm-6 col-xs-6'>{this.formatDate(this.props.note.updated_at)}</p>
           <span className='action-icons col-sm-6 col-xs-6'>
-            <a href='#' onClick={this.onModalEdit} data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }><i className='fa fa-pencil-square-o fa-lg'></i></a>
+            <a href='#' data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }><i className='fa fa-pencil-square-o fa-lg'></i></a>
             <a href='#' onClick={this.onNoteDelete}><i className='fa fa-trash fa-lg'></i></a>
           </span>
           <div className='cursor-pointer' data-toggle="modal" data-target={ '#note-modal' + this.props.note.id }>
@@ -35,7 +31,7 @@ var NoteBody = React.createClass({
             <p className='text-fadeout'></p>
           </div>
         </div>
-        <NoteModal note={this.props.note} createNote={false}  editModal={this.props.editModal} handleModalEdit={this.props.handleModalEdit} handleNoteSubmit={this.props.handleNoteSubmit} generateAlloyEditor={this.props.generateAlloyEditor} />
+        <NoteModal note={this.props.note} createNote={false} handleNoteSubmit={this.props.handleNoteSubmit} generateAlloyEditor={this.props.generateAlloyEditor} />
       </div>
     )
   }

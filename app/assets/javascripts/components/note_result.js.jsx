@@ -1,6 +1,6 @@
 var NoteResult = React.createClass({
   getInitialState: function(){
-    return {notes: [], categories: [], editModal: false };
+    return {notes: [], categories: []};
   },
   //fetch the initial notes from notes_controller
   componentDidMount: function(){
@@ -30,14 +30,6 @@ var NoteResult = React.createClass({
         this.setState( data )
       }.bind(this)
     });
-  },
-  
-  handleModalEdit: function(value){
-    this.setState({editModal: value})
-  },
-  
-  handleModalView: function(){
-    this.setState({editModal: false})
   },
   
   generateAlloyEditor: function(textareaId){
@@ -80,7 +72,7 @@ var NoteResult = React.createClass({
           <NoteSearchForm handleNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit}　generateAlloyEditor={this.generateAlloyEditor} />
+          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit}　generateAlloyEditor={this.generateAlloyEditor} />
         </div>
         
       </div>
