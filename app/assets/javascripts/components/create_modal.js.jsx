@@ -16,9 +16,45 @@ var CreateModal = React.createClass({
     this.props.handleModalEdit(false)
   },
   
+  setupReact: function(e){
+    var React = AlloyEditor.React;
+  },
+  
+  generateAlloyEditor: function(e){
+    setTimeout(function(){
+      var textarea = "create-content";
+      var editor = CKEDITOR.instances[textarea];
+      if (editor){
+        CKEDITOR.remove(editor);
+      } else {
+        var editor = AlloyEditor.editable(textarea, {
+          toolbars: {
+            add: {
+              buttons: ['camera']
+            },
+            styles: {
+              selections: [
+                {
+                  name: 'text',
+                  buttons: ['code', 'bold', 'italic'],
+                  test: AlloyEditor.SelectionTest.text
+                },
+                {
+                    name: 'link',
+                    buttons: ['linkEdit'],
+                    test: AlloyEditor.SelectionTest.link
+                }
+              ]
+            }
+          }
+        });
+      }
+    }, 0)
+    
+  },
+  
   render: function(){
-    //generate AlloyEditor
-    //AlloyEditor.editable('create-content');
+    this.generateAlloyEditor();
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>

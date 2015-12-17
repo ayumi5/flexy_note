@@ -20,8 +20,8 @@
 //= require react
 //= require react_ujs
 //= require react_bootstrap
-//= require alloy-editor/alloy-editor-all-min
 //= require components
+//= require alloy-editor/alloy-editor-all-min
 //= require_tree .
 
 $(document).ready(function(){
