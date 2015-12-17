@@ -40,6 +40,38 @@ var NoteResult = React.createClass({
     this.setState({editModal: false})
   },
   
+  generateAlloyEditor: function(textareaId){
+    setTimeout(function(){
+      var textarea = textareaId;
+      var editor = CKEDITOR.instances[textarea];
+      if (editor){
+        CKEDITOR.remove(editor);
+      } else {
+        AlloyEditor.editable(textarea, {
+          toolbars: {
+            add: {
+              buttons: ['camera']
+            },
+            styles: {
+              selections: [
+                {
+                  name: 'text',
+                  buttons: ['code', 'bold', 'italic'],
+                  test: AlloyEditor.SelectionTest.text
+                },
+                {
+                  name: 'link',
+                  buttons: ['linkEdit'],
+                  test: AlloyEditor.SelectionTest.link
+                }
+              ]
+            }
+          }
+        });
+      }
+    }, 0)
+    
+  },
   
   render: function() {
     return (
@@ -48,7 +80,7 @@ var NoteResult = React.createClass({
           <NoteSearchForm handleNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit} />
+          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit}　generateAlloyEditor={this.generateAlloyEditor} />
         </div>
         
       </div>

@@ -12,10 +12,16 @@ var EditModal = React.createClass({
     this.props.handleModalEdit(false)
   },
   
+  onAlloyEditorGenerate: function(e){
+    var textareaId = "content-" + this.props.note.id
+    this.props.generateAlloyEditor(textareaId)
+  },
+  
   render: function(){
     if (this.props.note.category){
       var categoryName = this.props.note.category.name;
     }
+    this.onAlloyEditorGenerate()
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>
@@ -29,7 +35,7 @@ var EditModal = React.createClass({
                 <h3>Category</h3>
                 <input ref='category' className='form-control' defaultValue={categoryName} />
                 <h3>Text</h3>
-                <textarea ref='content' className='form-control' defaultValue={this.props.note.content} rows='10' />
+                <textarea ref='content' className='form-control' defaultValue={this.props.note.content} rows='10' id={"content-" + this.props.note.id} />
               </div>
             </div>
             <div className='modal-footer'>
