@@ -8,6 +8,10 @@ var EditModal = React.createClass({
     this.props.handleNoteSubmit(formData, this.refs.form.action, 'PUT');
   },
   
+  onModalView: function(e){
+    this.props.handleModalEdit(false)
+  },
+  
   onAlloyEditorGenerate: function(e){
     var textareaId = "content-" + this.props.note.id
     this.props.generateAlloyEditor(textareaId)
@@ -21,7 +25,7 @@ var EditModal = React.createClass({
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.onModalView}>
             <span aria-hidden="true">&times;</span>
           </button>
           <form ref='form' role='form' action={('notes/' + this.props.note.id) || 'notes'} method='PUT' onSubmit={this.onNoteUpdate}>
@@ -36,7 +40,7 @@ var EditModal = React.createClass({
             </div>
             <div className='modal-footer'>
               <button type="submit" className="btn btn-primary">Submit</button>
-              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.onModalView}>Close</button>
             </div>
           </form>
         </div>

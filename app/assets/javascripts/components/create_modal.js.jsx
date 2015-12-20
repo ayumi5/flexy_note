@@ -9,6 +9,11 @@ var CreateModal = React.createClass({
     this.refs.title.value = "" ;
     this.refs.category.value = "";
     this.refs.content.value = "";
+    
+  },
+  
+  onModalView: function(e){
+    this.props.handleModalEdit(false)
   },
   
   onAlloyEditorGenerate: function(e){
@@ -20,7 +25,7 @@ var CreateModal = React.createClass({
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.onModalView}>
             <span aria-hidden="true">&times;</span>
           </button>
           <form ref='form' role='form' action="notes" method='POST' onSubmit={this.onNoteCreate}>
@@ -35,7 +40,7 @@ var CreateModal = React.createClass({
             </div>
             <div className='modal-footer'>
               <button type="submit" className="btn btn-primary">Submit</button>
-              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.onModalView}>Close</button>
             </div>
           </form>
         </div>
