@@ -293,6 +293,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   rails (= 4.2.1)
+  rails-html-sanitizer
   rails4-autocomplete
   react-bootstrap-rails
   react-rails (~> 1.4.0)
