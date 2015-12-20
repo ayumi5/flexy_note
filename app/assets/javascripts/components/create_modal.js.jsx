@@ -28,9 +28,9 @@ var CreateModal = React.createClass({
               <input ref='title' className='form-control edit-title' placeholder="Type in title here"/>
               <div className='modal-body'>
                 <h3>Category</h3>
-                <input ref='category' className='form-control' />
+                <input ref='category' className='form-control edit-category' />
                 <h3>Text</h3>
-                <textarea ref='content' className='form-control' rows="10" id="create-content" />
+                <textarea ref='content' className='form-control edit-content' rows="10" id="create-content" />
               </div>
             </div>
             <div className='modal-footer'>

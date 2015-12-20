@@ -1,3 +1,4 @@
+//----------------note search form
 .search-form-wrapper
   .note-search-form
     .form-group
@@ -9,7 +10,15 @@
       .note-date
         div
           margin: 0
+          
 
+//---------------datepicker
+.datepicker-dropdown, .dropdown-menu
+  top: 215px!important
+  margin-left: 15px
+
+
+//---------------a listing of notes
 .listing
   text-align: center
   margin: 10px
@@ -58,17 +67,8 @@
 
 .cursor-pointer
   cursor: pointer
-    
-.edit-modal
-  .edit-title
-    width: 80%
-    margin: 0 auto
-    text-align: center
-    font-size: 17pt
-    font-weight: bold
-  .form-control
-    border: 0
-
+  
+//---------------a individual modal of a listing 
 .note-modal
   .modal-content
     .modal-body
@@ -78,13 +78,25 @@
     .modal-footer
       padding-bottom: 0
 
+//---------------Modal for edit
+.edit-modal
+  .edit-title
+    width: 80%
+    margin: 0 auto
+    text-align: center
+    font-size: 17pt
+    font-weight: bold
+        
+  .form-control
+    border: 0
 
-.datepicker-dropdown, .dropdown-menu
-  top: 215px!important
-  margin-left: 15px
-
+//---------------alloy editor toolbar
 .ae-toolbar-styles
   z-index: 9999
   
-.ae-toolbar-add
+.ae-toolbar-add, .ae-arrow-box
   z-index: 9999
+
+//---------------alloy editor text
+.cke_textarea_inline
+  min-height: 200px

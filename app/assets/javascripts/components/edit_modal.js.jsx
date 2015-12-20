@@ -29,10 +29,10 @@ var EditModal = React.createClass({
               <input ref='title' className='form-control edit-title' defaultValue={this.props.note.title}/>
               <div className='modal-body'>
                 <h3>Category</h3>
-                <input ref='category' className='form-control' defaultValue={categoryName} />
+                <input ref='category' className='form-control edit-category' defaultValue={categoryName} />
                 <h3>Text</h3>
-                <textarea ref='content' className='form-control' defaultValue={this.props.note.content} rows='10' id={"content-" + this.props.note.id} />
-              </div>
+                <textarea ref='content' className='form-control edit-content' defaultValue={this.props.note.content} rows='10' id={"content-" + this.props.note.id} />
+            </div>
             </div>
             <div className='modal-footer'>
               <button type="submit" className="btn btn-primary">Submit</button>

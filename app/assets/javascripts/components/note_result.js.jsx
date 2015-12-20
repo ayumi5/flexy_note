@@ -42,19 +42,24 @@ var NoteResult = React.createClass({
         AlloyEditor.editable(textarea, {
           toolbars: {
             add: {
-              buttons: ['camera']
+              buttons: ['image', 'hline']
             },
             styles: {
               selections: [
                 {
-                  name: 'text',
-                  buttons: ['code', 'bold', 'italic'],
-                  test: AlloyEditor.SelectionTest.text
-                },
-                {
                   name: 'link',
                   buttons: ['linkEdit'],
                   test: AlloyEditor.SelectionTest.link
+                },
+                {
+                  name: 'text',
+                  buttons: ['code', 'bold', 'italic', 'quote', 'removeFormat', 'strike', 'underline'],
+                  test: AlloyEditor.SelectionTest.text
+                },
+                {
+                  name: 'image',
+                  buttons: ['imageCenter', 'imageLeft', 'imageRight'],
+                  test: AlloyEditor.SelectionTest.image
                 }
               ]
             }
