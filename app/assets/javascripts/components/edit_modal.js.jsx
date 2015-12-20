@@ -1,9 +1,15 @@
 var EditModal = React.createClass({
   onNoteUpdate: function(e){
     e.preventDefault()
+    var textareaId = "content-" + this.props.note.id;
+    var editor = CKEDITOR.instances[textareaId];
     var title = this.refs.title.value.trim();
     var category = this.refs.category.value.trim();
-    var content = this.refs.content.value.trim();
+    var content;
+    if (editor){
+      content = editor.getData().trim();
+    }
+    
     var formData= { note: {title: title, category: category, content: content}};
     this.props.handleNoteSubmit(formData, this.refs.form.action, 'PUT');
   },

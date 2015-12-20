@@ -1,14 +1,19 @@
 var CreateModal = React.createClass({
   onNoteCreate: function(e){
     e.preventDefault()
+    var textareaId = "create-content-modal";
     var title = this.refs.title.value.trim();
     var category = this.refs.category.value.trim();
-    var content = this.refs.content.value.trim();
+    var editor = CKEDITOR.instances[textareaId];
+    var content;
+    if (editor){
+      content = editor.getData().trim();
+    }
     var formData= { note: {title: title, category: category, content: content}};
     this.props.handleNoteSubmit(formData, this.refs.form.action, 'POST');
     this.refs.title.value = "" ;
     this.refs.category.value = "";
-    this.refs.content.value = "";
+    editor.setData('');
     
   },
   
@@ -17,7 +22,8 @@ var CreateModal = React.createClass({
   },
   
   onAlloyEditorGenerate: function(e){
-    this.props.generateAlloyEditor("create-content")
+    var textareaId = "create-content-modal";
+    this.props.generateAlloyEditor(textareaId);
   },
   
   render: function(){
@@ -35,7 +41,7 @@ var CreateModal = React.createClass({
                 <h3>Category</h3>
                 <input ref='category' className='form-control edit-category' />
                 <h3>Text</h3>
-                <textarea ref='content' className='form-control edit-content' rows="10" id="create-content" />
+                <textarea ref='content' className='form-control edit-content' rows="10" id="create-content-modal" />
               </div>
             </div>
             <div className='modal-footer'>

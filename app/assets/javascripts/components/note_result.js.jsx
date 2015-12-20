@@ -44,9 +44,7 @@ var NoteResult = React.createClass({
     setTimeout(function(){
       var textarea = textareaId;
       var editor = CKEDITOR.instances[textarea];
-      if (editor){
-        CKEDITOR.remove(editor);
-      } else {
+      if (!editor){
         AlloyEditor.editable(textarea, {
           toolbars: {
             add: {
