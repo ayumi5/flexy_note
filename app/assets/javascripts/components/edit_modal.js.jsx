@@ -5,33 +5,19 @@ var EditModal = React.createClass({
     var editor = CKEDITOR.instances[textareaId];
     var title = this.refs.title.value.trim();
     var category = this.refs.category.value.trim();
-    var content;
-    if (editor){
-      content = editor.getData().trim();
-    }
-    
+    var content = editor.getData().trim();
     var formData= { note: {title: title, category: category, content: content}};
     this.props.handleNoteSubmit(formData, this.refs.form.action, 'PUT');
-  },
-  
-  onModalView: function(e){
-    this.props.handleModalEdit(false)
-  },
-  
-  onAlloyEditorGenerate: function(e){
-    var textareaId = "content-" + this.props.note.id
-    this.props.generateAlloyEditor(textareaId)
   },
   
   render: function(){
     if (this.props.note.category){
       var categoryName = this.props.note.category.name;
     }
-    this.onAlloyEditorGenerate()
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.onModalView}>
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
           <form ref='form' role='form' action={('notes/' + this.props.note.id) || 'notes'} method='PUT' onSubmit={this.onNoteUpdate}>
@@ -45,8 +31,8 @@ var EditModal = React.createClass({
             </div>
             </div>
             <div className='modal-footer'>
-              <button type="submit" className="btn btn-primary">Submit</button>
-              <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.onModalView}>Close</button>
+              <button type="submit" className="btn btn-primary" >Submit</button>
+              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </form>
         </div>

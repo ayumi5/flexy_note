@@ -1,6 +1,8 @@
 var ViewModal = React.createClass({
   onModalEdit: function(){
-    this.props.handleModalEdit(true)
+    var textareaId = "content-" + this.props.note.id
+    this.props.handleModalEdit(true);
+    this.props.generateAlloyEditor(textareaId);
   },
   rawMarkup: function() {
     return { __html: this.props.note.content };

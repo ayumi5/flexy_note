@@ -2,9 +2,19 @@ var NoteResult = React.createClass({
   getInitialState: function(){
     return {notes: [], categories: [], editModal: false };
   },
+  
   //fetch the initial notes from notes_controller
   componentDidMount: function(){
     this.getInitialNotes()
+    $(ReactDOM.findDOMNode(this)).on('hidden.bs.modal', this.onModalHidden);
+  },
+  
+  onModalHidden: function(){
+    this.setState({ editModal: false })
+  },
+  
+  componentWillUnmount: function(){
+    $(ReactDOM.findDOMNode(this)).off('hidden.bs.modal', this.onModalHidden);
   },
   
   getInitialNotes: function(){
@@ -36,42 +46,35 @@ var NoteResult = React.createClass({
     this.setState({editModal: value})
   },
   
-  handleModalView: function(){
-    this.setState({editModal: false})
-  },
-  
   generateAlloyEditor: function(textareaId){
     setTimeout(function(){
       var textarea = textareaId;
-      var editor = CKEDITOR.instances[textarea];
-      if (!editor){
-        AlloyEditor.editable(textarea, {
-          toolbars: {
-            add: {
-              buttons: ['image', 'hline']
-            },
-            styles: {
-              selections: [
-                {
-                  name: 'link',
-                  buttons: ['linkEdit'],
-                  test: AlloyEditor.SelectionTest.link
-                },
-                {
-                  name: 'text',
-                  buttons: ['code', 'bold', 'italic', 'quote', 'removeFormat', 'strike', 'underline'],
-                  test: AlloyEditor.SelectionTest.text
-                },
-                {
-                  name: 'image',
-                  buttons: ['imageCenter', 'imageLeft', 'imageRight'],
-                  test: AlloyEditor.SelectionTest.image
-                }
-              ]
-            }
+      AlloyEditor.editable(textarea, {
+        toolbars: {
+          add: {
+            buttons: ['image', 'hline']
+          },
+          styles: {
+            selections: [
+              {
+                name: 'link',
+                buttons: ['linkEdit'],
+                test: AlloyEditor.SelectionTest.link
+              },
+              {
+                name: 'text',
+                buttons: ['code', 'bold', 'italic', 'quote', 'removeFormat', 'strike', 'underline'],
+                test: AlloyEditor.SelectionTest.text
+              },
+              {
+                name: 'image',
+                buttons: ['imageCenter', 'imageLeft', 'imageRight'],
+                test: AlloyEditor.SelectionTest.image
+              }
+            ]
           }
-        });
-      }
+        }
+      });
     }, 0)
     
   },
