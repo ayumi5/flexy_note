@@ -42,7 +42,12 @@ var CreateModal = React.createClass({
     var category = this.refs.category;
     $(category).typeahead({
       minLength: 1,
-      highlight: true
+      highlight: true,
+      classNames: {
+        input: 'typeahead-input',
+        hint: 'typeahead-hint',
+        selectable: 'typeahead-selectable'
+      }
     }, {
       name: 'categories',
       source: this.substringMatcher(categoriesArray)
