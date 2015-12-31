@@ -20,6 +20,10 @@ gem 'font-awesome-sass', '~> 4.4.0'
 gem 'haml-rails'
 gem 'react-bootstrap-rails'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-typeahead.js'
+end
+
 #frontend
 gem 'react-rails', '~> 1.4.0'
 gem 'rails-html-sanitizer'

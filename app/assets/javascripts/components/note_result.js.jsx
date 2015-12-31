@@ -6,7 +6,8 @@ var NoteResult = React.createClass({
   //fetch the initial notes from notes_controller
   componentDidMount: function(){
     this.getInitialNotes()
-    $(ReactDOM.findDOMNode(this)).on('hidden.bs.modal', this.onModalHidden);
+    var element = $(ReactDOM.findDOMNode(this))
+    element.on('hidden.bs.modal', this.onModalHidden);
   },
   
   onModalHidden: function(){
@@ -86,7 +87,7 @@ var NoteResult = React.createClass({
           <NoteSearchForm handleNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit}　generateAlloyEditor={this.generateAlloyEditor} />
+          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit}　generateAlloyEditor={this.generateAlloyEditor} categories={this.state.categories}/>
         </div>
         
       </div>

@@ -18,7 +18,39 @@ var CreateModal = React.createClass({
     this.props.generateAlloyEditor(textareaId);
   },
   
+  substringMatcher: function(strs){
+    return function findMatches(q, cb) {
+      var matches, substringRegex;
+      matches = [];
+      substrRegex = new RegExp(q, 'i');
+      
+      $.each(strs, function(i, str){
+        if (substrRegex.test(str)){
+          matches.push(str);
+        }
+      });
+      cb(matches);
+    }
+  },
+  
+  typeAhead: function(){
+    var categories = this.props.categories;
+    var categoriesArray = [];
+    $.each(categories, function(i, category){
+      categoriesArray.push(category.name)
+    });
+    var category = this.refs.category;
+    $(category).typeahead({
+      minLength: 1,
+      highlight: true
+    }, {
+      name: 'categories',
+      source: this.substringMatcher(categoriesArray)
+    })
+  },
+  
   render: function(){
+    this.typeAhead()
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>

@@ -21,6 +21,7 @@
 //= require react_ujs
 //= require react_bootstrap
 //= require components
+//= require typeahead.js
 //= require alloy-editor/alloy-editor-all-min
 //= require_tree .
 
