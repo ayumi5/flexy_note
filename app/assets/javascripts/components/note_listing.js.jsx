@@ -2,7 +2,7 @@ var NoteListing = React.createClass({
   
   render: function() {
     var Notes = this.props.notes.map(function(note){
-      return <NoteBody note={note} key={note.id} handleNoteSubmit={this.props.handleNoteSubmit} editModal={this.props.editModal} handleModalEdit={this.props.handleModalEdit} generateAlloyEditor={this.props.generateAlloyEditor}/>
+      return <NoteBody note={note} key={note.id} handleNoteSubmit={this.props.handleNoteSubmit} editModal={this.props.editModal} handleModalEdit={this.props.handleModalEdit} generateAlloyEditor={this.props.generateAlloyEditor} categories={this.props.categories}/>
     }.bind(this));
     
     return (

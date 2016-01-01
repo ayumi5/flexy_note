@@ -10,6 +10,47 @@ var EditModal = React.createClass({
     this.props.handleNoteSubmit(formData, this.refs.form.action, 'PUT');
   },
   
+  componentDidMount: function(){
+    this.typeAhead()
+  },
+  
+  substringMatcher: function(strs){
+    return function findMatches(q, cb) {
+      var matches, substringRegex;
+      matches = [];
+      substrRegex = new RegExp(q, 'i');
+      
+      $.each(strs, function(i, str){
+        if (substrRegex.test(str)){
+          matches.push(str);
+        }
+      });
+      cb(matches);
+    }
+  },
+  
+  typeAhead: function(){
+    var categories = this.props.categories;
+    var categoriesArray = [];
+    $.each(categories, function(i, category){
+      categoriesArray.push(category.name)
+    });
+    var category = this.refs.category;
+    
+    $(category).typeahead({
+      minLength: 1,
+      highlight: true,
+      classNames: {
+        input: 'typeahead-input',
+        hint: 'typeahead-hint',
+        selectable: 'typeahead-selectable'
+      }
+    }, {
+      name: 'categories',
+      source: this.substringMatcher(categoriesArray)
+    })
+  },
+  
   render: function(){
     if (this.props.note.category){
       var categoryName = this.props.note.category.name;
@@ -25,7 +66,7 @@ var EditModal = React.createClass({
               <input ref='title' className='form-control edit-title' defaultValue={this.props.note.title}/>
               <div className='modal-body'>
                 <h3>Category</h3>
-                <input ref='category' className='form-control edit-category' defaultValue={categoryName} />
+                <input ref='category' className='form-control edit-category' defaultValue={categoryName}/>
                 <h3>Text</h3>
                 <textarea ref='content' className='form-control edit-content' defaultValue={this.props.note.content} rows='10' id={"content-" + this.props.note.id} />
             </div>
