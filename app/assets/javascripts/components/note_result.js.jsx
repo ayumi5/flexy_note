@@ -9,13 +9,17 @@ var NoteResult = React.createClass({
     var element = $(ReactDOM.findDOMNode(this))
     element.on('hidden.bs.modal', this.onModalHidden);
   },
+    
+  componentWillUnmount: function(){
+    $(ReactDOM.findDOMNode(this)).off('hidden.bs.modal', this.onModalHidden);
+  },
   
   onModalHidden: function(){
     this.setState({ editModal: false })
   },
   
-  componentWillUnmount: function(){
-    $(ReactDOM.findDOMNode(this)).off('hidden.bs.modal', this.onModalHidden);
+  handleModalEdit: function(value){
+    this.setState({editModal: value})
   },
   
   getInitialNotes: function(){
@@ -43,33 +47,36 @@ var NoteResult = React.createClass({
     });
   },
   
-  handleModalEdit: function(value){
-    this.setState({editModal: value})
+  onModalLoaded: function(content, loaded){
+    var contentElement = $(ReactDOM.findDOMNode(content));
+    var textareaId = contentElement.attr('id');
+    if (loaded){
+      this.generateAlloyEditor(textareaId);
+    } else {
+      CKEDITOR.instances[textareaId].destroy();
+    }
   },
   
   generateAlloyEditor: function(textareaId){
-    setTimeout(function(){
-      var textarea = textareaId;
-      AlloyEditor.editable(textarea, {
-        toolbars: {
-          styles: {
-            selections: [
-              {
-                name: 'link',
-                buttons: ['linkEdit'],
-                test: AlloyEditor.SelectionTest.link
-              },
-              {
-                name: 'text',
-                buttons: ['code', 'bold', 'italic', 'quote', 'removeFormat', 'strike', 'underline'],
-                test: AlloyEditor.SelectionTest.text
-              }
-            ]
-          }
+    var textarea = textareaId;
+    AlloyEditor.editable(textarea, {
+      toolbars: {
+        styles: {
+          selections: [
+            {
+              name: 'link',
+              buttons: ['linkEdit'],
+              test: AlloyEditor.SelectionTest.link
+            },
+            {
+              name: 'text',
+              buttons: ['code', 'bold', 'italic', 'quote', 'removeFormat', 'strike', 'underline'],
+              test: AlloyEditor.SelectionTest.text
+            }
+          ]
         }
-      });
-    }, 0)
-    
+      }
+    });
   },
   
   render: function() {
@@ -79,7 +86,7 @@ var NoteResult = React.createClass({
           <NoteSearchForm handleNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit}　generateAlloyEditor={this.generateAlloyEditor} categories={this.state.categories}/>
+          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit} categories={this.state.categories} onModalLoaded={this.onModalLoaded}/>
         </div>
         
       </div>

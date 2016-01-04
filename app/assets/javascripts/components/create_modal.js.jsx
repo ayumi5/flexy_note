@@ -13,9 +13,12 @@ var CreateModal = React.createClass({
     editor.setData('');
   },
   
-  onAlloyEditorGenerate: function(e){
-    var textareaId = "create-content-modal";
-    this.props.generateAlloyEditor(textareaId);
+  componentDidMount: function(){
+    this.props.onModalLoaded(this.refs.content, true)
+  },
+  
+  componentWillUnmount: function(){
+    this.props.onModalLoaded(this.refs.content, false)
   },
   
   substringMatcher: function(strs){
@@ -55,7 +58,7 @@ var CreateModal = React.createClass({
   },
   
   render: function(){
-    this.typeAhead()
+    this.typeAhead();
     return (
       <div className='modal-content edit-modal'>
         <div className='modal-header'>
@@ -69,7 +72,7 @@ var CreateModal = React.createClass({
                 <h3>Category</h3>
                 <input ref='category' className='form-control edit-category' />
                 <h3>Text</h3>
-                <textarea ref='content' className='form-control edit-content' rows="10" id="create-content-modal" onClick={this.onAlloyEditorGenerate}/>
+                <textarea ref='content' className='form-control edit-content' rows="10" id="create-content-modal"/>
               </div>
             </div>
             <div className='modal-footer'>

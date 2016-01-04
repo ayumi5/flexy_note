@@ -34,7 +34,7 @@ var NoteBody = React.createClass({
             <p className='text-fadeout'></p>
           </div>
         </div>
-        <NoteModal note={this.props.note} createNote={false}  editModal={this.props.editModal} handleModalEdit={this.props.handleModalEdit} handleNoteSubmit={this.props.handleNoteSubmit} generateAlloyEditor={this.props.generateAlloyEditor} categories={this.props.categories}/>
+        <NoteModal note={this.props.note} createNote={false}  editModal={this.props.editModal} handleModalEdit={this.props.handleModalEdit} handleNoteSubmit={this.props.handleNoteSubmit} categories={this.props.categories} onModalLoaded={this.props.onModalLoaded}/>
       </div>
     )
   }

@@ -10,7 +10,7 @@ var NoteCreateBox = React.createClass({
             </div>
           </div>
         </div>
-        <NoteModal createNote={true} editModal={true} handleModalEdit={this.props.handleModalEdit} handleNoteSubmit={this.props.handleNoteSubmit} generateAlloyEditor={this.props.generateAlloyEditor} categories={this.props.categories}/>
+        <NoteModal createNote={true} editModal={true} handleModalEdit={this.props.handleModalEdit} handleNoteSubmit={this.props.handleNoteSubmit} categories={this.props.categories} onModalLoaded={this.props.onModalLoaded}/>
       </div>
   )
   }
