@@ -1,4 +1,5 @@
 var NoteModal = React.createClass({
+  
   render: function(){
     var ModalContent;
     if (this.props.editModal) {
@@ -14,7 +15,7 @@ var NoteModal = React.createClass({
     
     return (
       <div>
-        <div className='note-modal modal fade' id={ 'note-modal' + noteId  }>
+        <div className='note-modal modal fade' id={ 'note-modal' + noteId  } ref='modal'>
           <div className='modal-dialog'>
             { ModalContent }
           </div>

@@ -11,7 +11,16 @@ var EditModal = React.createClass({
   },
   
   componentDidMount: function(){
-    this.typeAhead()
+    var contentElement = $(ReactDOM.findDOMNode(this.refs.content));
+    var textareaId = contentElement.attr('id');
+    this.props.generateAlloyEditor(textareaId);
+    this.typeAhead();
+  },
+  
+  componentWillUnmount: function(){
+    var contentElement = $(ReactDOM.findDOMNode(this.refs.content));
+    var textareaId = contentElement.attr('id');
+    CKEDITOR.instances[textareaId].destroy();
   },
   
   substringMatcher: function(strs){
