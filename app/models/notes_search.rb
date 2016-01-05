@@ -27,7 +27,7 @@ class NotesSearch
   end
   
   def category_filter
-    index.filter(term: {category: category}) if category?
+    index.filter(term: {category: category.downcase}) if category?
   end
   
   def sorting
