@@ -11,7 +11,9 @@ module NotesHelper
   def white_list_sanitizer(notes, attr)
     white_list_sanitizer = Rails::Html::WhiteListSanitizer.new
     notes.map { |note|
-      note.content = white_list_sanitizer.sanitize(note[attr])
+      if note && note[attr]
+        note.content = white_list_sanitizer.sanitize(note[attr])
+      end
     }  
   end
 end
