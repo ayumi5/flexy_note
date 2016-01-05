@@ -14,11 +14,11 @@ var CreateModal = React.createClass({
   },
   
   componentDidMount: function(){
-    this.props.onModalLoaded(this.refs.content, true)
+    this.props.onModalLoaded(this.refs.content, this.refs.category, true)
   },
   
   componentWillUnmount: function(){
-    this.props.onModalLoaded(this.refs.content, false)
+    this.props.onModalLoaded(this.refs.content, this.refs.category, false)
   },
   
   substringMatcher: function(strs){

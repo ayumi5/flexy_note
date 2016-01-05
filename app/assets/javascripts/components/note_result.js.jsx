@@ -47,19 +47,19 @@ var NoteResult = React.createClass({
     });
   },
   
-  onModalLoaded: function(content, loaded){
+  onModalLoaded: function(content, category, loaded){
     var contentElement = $(ReactDOM.findDOMNode(content));
     var textareaId = contentElement.attr('id');
     if (loaded){
       this.generateAlloyEditor(textareaId);
+      this.typeAhead(category);
     } else {
       CKEDITOR.instances[textareaId].destroy();
     }
   },
   
   generateAlloyEditor: function(textareaId){
-    var textarea = textareaId;
-    AlloyEditor.editable(textarea, {
+    AlloyEditor.editable(textareaId, {
       toolbars: {
         styles: {
           selections: [
@@ -77,6 +77,41 @@ var NoteResult = React.createClass({
         }
       }
     });
+  },
+  
+  substringMatcher: function(strs){
+    return function findMatches(q, cb) {
+      var matches, substringRegex;
+      matches = [];
+      substrRegex = new RegExp(q, 'i');
+      $.each(strs, function(i, str){
+        if (substrRegex.test(str)){
+          matches.push(str);
+        }
+      });
+      cb(matches);
+    }
+  },
+  
+  typeAhead: function(categoryElem){
+    var categories = this.state.categories;
+    var categoriesArray = [];
+    $.each(categories, function(i, category){
+      categoriesArray.push(category.name)
+    });
+    
+    $(categoryElem).typeahead({
+      minLength: 1,
+      highlight: true,
+      classNames: {
+        input: 'typeahead-input',
+        hint: 'typeahead-hint',
+        selectable: 'typeahead-selectable'
+      }
+    }, {
+      name: 'categories',
+      source: this.substringMatcher(categoriesArray)
+    })
   },
   
   render: function() {

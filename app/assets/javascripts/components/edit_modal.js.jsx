@@ -11,49 +11,11 @@ var EditModal = React.createClass({
   },
   
   componentDidMount: function(){
-    this.props.onModalLoaded(this.refs.content, true);
-    this.typeAhead();
+    this.props.onModalLoaded(this.refs.content, this.refs.category, true);
   },
   
   componentWillUnmount: function(){
-    this.props.onModalLoaded(this.refs.content, false);
-  },
-  
-  substringMatcher: function(strs){
-    return function findMatches(q, cb) {
-      var matches, substringRegex;
-      matches = [];
-      substrRegex = new RegExp(q, 'i');
-      
-      $.each(strs, function(i, str){
-        if (substrRegex.test(str)){
-          matches.push(str);
-        }
-      });
-      cb(matches);
-    }
-  },
-  
-  typeAhead: function(){
-    var categories = this.props.categories;
-    var categoriesArray = [];
-    $.each(categories, function(i, category){
-      categoriesArray.push(category.name)
-    });
-    var category = this.refs.category;
-    
-    $(category).typeahead({
-      minLength: 1,
-      highlight: true,
-      classNames: {
-        input: 'typeahead-input',
-        hint: 'typeahead-hint',
-        selectable: 'typeahead-selectable'
-      }
-    }, {
-      name: 'categories',
-      source: this.substringMatcher(categoriesArray)
-    })
+    this.props.onModalLoaded(this.refs.content, this.refs.category, false);
   },
   
   render: function(){
