@@ -6,8 +6,7 @@ var NoteResult = React.createClass({
   //fetch the initial notes from notes_controller
   componentDidMount: function(){
     this.getInitialNotes()
-    var element = $(ReactDOM.findDOMNode(this))
-    element.on('hidden.bs.modal', this.onModalHidden);
+    $(ReactDOM.findDOMNode(this)).on('hidden.bs.modal', this.onModalHidden);
   },
     
   componentWillUnmount: function(){
@@ -94,7 +93,7 @@ var NoteResult = React.createClass({
   },
   
   typeAhead: function(categoryElem){
-    var categories = this.state.categories;
+    var categories = this.props.categories;
     var categoriesArray = [];
     $.each(categories, function(i, category){
       categoriesArray.push(category.name)
@@ -121,7 +120,7 @@ var NoteResult = React.createClass({
           <NoteSearchForm handleNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit} categories={this.state.categories} onModalLoaded={this.onModalLoaded}/>
+          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit} onModalLoaded={this.onModalLoaded}/>
         </div>
         
       </div>

@@ -14,72 +14,39 @@ var CreateModal = React.createClass({
   },
   
   componentDidMount: function(){
-    this.props.onModalLoaded(this.refs.content, this.refs.category, true)
+    this.props.onModalLoaded(this.refs.content, this.refs.category, true);
   },
   
   componentWillUnmount: function(){
-    this.props.onModalLoaded(this.refs.content, this.refs.category, false)
-  },
-  
-  substringMatcher: function(strs){
-    return function findMatches(q, cb) {
-      var matches, substringRegex;
-      matches = [];
-      substrRegex = new RegExp(q, 'i');
-      
-      $.each(strs, function(i, str){
-        if (substrRegex.test(str)){
-          matches.push(str);
-        }
-      });
-      cb(matches);
-    }
-  },
-  
-  typeAhead: function(){
-    var categories = this.props.categories;
-    var categoriesArray = [];
-    $.each(categories, function(i, category){
-      categoriesArray.push(category.name)
-    });
-    var category = this.refs.category;
-    $(category).typeahead({
-      minLength: 1,
-      highlight: true,
-      classNames: {
-        input: 'typeahead-input',
-        hint: 'typeahead-hint',
-        selectable: 'typeahead-selectable'
-      }
-    }, {
-      name: 'categories',
-      source: this.substringMatcher(categoriesArray)
-    })
+    this.props.onModalLoaded(this.refs.content, this.refs.category, false);
   },
   
   render: function(){
-    this.typeAhead();
     return (
-      <div className='modal-content edit-modal'>
-        <div className='modal-header'>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <form ref='form' role='form' action="notes" method='POST' onSubmit={this.onNoteCreate}>
-            <div className='form-group'>
-              <input ref='title' className='form-control edit-title' placeholder="Type in title here"/>
-              <div className='modal-body'>
-                <h3>Category</h3>
-                <input ref='category' className='form-control edit-category' />
-                <h3>Text</h3>
-                <textarea ref='content' className='form-control edit-content' rows="10" id="create-content-modal"/>
-              </div>
+      <div className='note-modal modal fade' id='note-modal-create' ref='modal'>
+        <div className='modal-dialog'>
+          <div className='modal-content edit-modal'>
+            <div className='modal-header'>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <form ref='form' role='form' action="notes" method='POST' onSubmit={this.onNoteCreate}>
+                <div className='form-group'>
+                  <input ref='title' className='form-control edit-title' placeholder="Type in title here"/>
+                  <div className='modal-body'>
+                    <h3>Category</h3>
+                    <input ref='category' className='form-control edit-category' id="create-category-modal" />
+                    <h3>Text</h3>
+                    <textarea ref='content' className='form-control edit-content' rows="10" id="create-content-modal"/>
+                  </div>
+                </div>
+                <div className='modal-footer'>
+                  <button type="submit" className="btn btn-primary">Submit</button>
+                  <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </form>
             </div>
-            <div className='modal-footer'>
-              <button type="submit" className="btn btn-primary">Submit</button>
-              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     )
