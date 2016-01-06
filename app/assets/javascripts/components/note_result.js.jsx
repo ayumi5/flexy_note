@@ -8,13 +8,17 @@ var NoteResult = React.createClass({
     this.getInitialNotes()
     $(ReactDOM.findDOMNode(this)).on('hidden.bs.modal', this.onModalHidden);
   },
+    
+  componentWillUnmount: function(){
+    $(ReactDOM.findDOMNode(this)).off('hidden.bs.modal', this.onModalHidden);
+  },
   
   onModalHidden: function(){
     this.setState({ editModal: false })
   },
   
-  componentWillUnmount: function(){
-    $(ReactDOM.findDOMNode(this)).off('hidden.bs.modal', this.onModalHidden);
+  handleModalEdit: function(value){
+    this.setState({editModal: value})
   },
   
   getInitialNotes: function(){
@@ -42,41 +46,71 @@ var NoteResult = React.createClass({
     });
   },
   
-  handleModalEdit: function(value){
-    this.setState({editModal: value})
+  onModalLoaded: function(content, category, loaded){
+    var contentElement = $(ReactDOM.findDOMNode(content));
+    var textareaId = contentElement.attr('id');
+    if (loaded){
+      this.generateAlloyEditor(textareaId);
+      this.typeAhead(category);
+    } else {
+      CKEDITOR.instances[textareaId].destroy();
+    }
   },
   
   generateAlloyEditor: function(textareaId){
-    setTimeout(function(){
-      var textarea = textareaId;
-      AlloyEditor.editable(textarea, {
-        toolbars: {
-          add: {
-            buttons: ['image', 'hline']
-          },
-          styles: {
-            selections: [
-              {
-                name: 'link',
-                buttons: ['linkEdit'],
-                test: AlloyEditor.SelectionTest.link
-              },
-              {
-                name: 'text',
-                buttons: ['code', 'bold', 'italic', 'quote', 'removeFormat', 'strike', 'underline'],
-                test: AlloyEditor.SelectionTest.text
-              },
-              {
-                name: 'image',
-                buttons: ['imageCenter', 'imageLeft', 'imageRight'],
-                test: AlloyEditor.SelectionTest.image
-              }
-            ]
-          }
+    AlloyEditor.editable(textareaId, {
+      toolbars: {
+        styles: {
+          selections: [
+            {
+              name: 'link',
+              buttons: ['linkEdit'],
+              test: AlloyEditor.SelectionTest.link
+            },
+            {
+              name: 'text',
+              buttons: ['code', 'bold', 'italic', 'quote', 'removeFormat', 'strike', 'underline'],
+              test: AlloyEditor.SelectionTest.text
+            }
+          ]
+        }
+      }
+    });
+  },
+  
+  substringMatcher: function(strs){
+    return function findMatches(q, cb) {
+      var matches, substringRegex;
+      matches = [];
+      substrRegex = new RegExp(q, 'i');
+      $.each(strs, function(i, str){
+        if (substrRegex.test(str)){
+          matches.push(str);
         }
       });
-    }, 0)
+      cb(matches);
+    }
+  },
+  
+  typeAhead: function(categoryElem){
+    var categories = this.props.categories;
+    var categoriesArray = [];
+    $.each(categories, function(i, category){
+      categoriesArray.push(category.name)
+    });
     
+    $(categoryElem).typeahead({
+      minLength: 1,
+      highlight: true,
+      classNames: {
+        input: 'typeahead-input',
+        hint: 'typeahead-hint',
+        selectable: 'typeahead-selectable'
+      }
+    }, {
+      name: 'categories',
+      source: this.substringMatcher(categoriesArray)
+    })
   },
   
   render: function() {
@@ -86,7 +120,7 @@ var NoteResult = React.createClass({
           <NoteSearchForm handleNoteSubmit={this.handleNoteSubmit} categories={this.state.categories} />
         </div>
         <div className='note-listing-wrapper'>
-          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit}　generateAlloyEditor={this.generateAlloyEditor} />
+          <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit} onModalLoaded={this.onModalLoaded}/>
         </div>
         
       </div>

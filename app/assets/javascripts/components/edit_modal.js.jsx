@@ -10,6 +10,14 @@ var EditModal = React.createClass({
     this.props.handleNoteSubmit(formData, this.refs.form.action, 'PUT');
   },
   
+  componentDidMount: function(){
+    this.props.onModalLoaded(this.refs.content, this.refs.category, true);
+  },
+  
+  componentWillUnmount: function(){
+    this.props.onModalLoaded(this.refs.content, this.refs.category, false);
+  },
+  
   render: function(){
     if (this.props.note.category){
       var categoryName = this.props.note.category.name;
@@ -25,7 +33,7 @@ var EditModal = React.createClass({
               <input ref='title' className='form-control edit-title' defaultValue={this.props.note.title}/>
               <div className='modal-body'>
                 <h3>Category</h3>
-                <input ref='category' className='form-control edit-category' defaultValue={categoryName} />
+                <input ref='category' className='form-control edit-category' defaultValue={categoryName}/>
                 <h3>Text</h3>
                 <textarea ref='content' className='form-control edit-content' defaultValue={this.props.note.content} rows='10' id={"content-" + this.props.note.id} />
             </div>

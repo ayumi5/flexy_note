@@ -14,10 +14,9 @@ class NotesController < ApplicationController
   def create
     @note = Note.create(note_params)
     @note.save
-    @notes = Note.all
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: {notes: convert_notes_to_json(@notes)} }
+      format.json { render json: {notes: convert_notes_to_json(Note.all)} }
     end
   end
   
@@ -27,11 +26,9 @@ class NotesController < ApplicationController
   
   def update
     @note.update_attributes!(note_params)
-    @notes = Note.all  
-    
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: {notes: convert_notes_to_json(@notes)} }
+      format.json { render json: {notes: convert_notes_to_json(Note.all)} }
     end
   end
   
