@@ -2,8 +2,12 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    - base_path = ''
+    = base_path << Rails.application.config.assets.prefix
+    - base_path << '/alloy-editor/'
     %script
-      var CKEDITOR_BASEPATH = '/assets/alloy-editor/';
+      var basePath = "#{base_path}"
+      var CKEDITOR_BASEPATH = basePath;
     %title FlexyNote
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
