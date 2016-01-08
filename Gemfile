@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
 
 gem 'rails', '4.2.1'
 
@@ -56,7 +55,3 @@ group :development, :test do
   gem 'pry-byebug'
   gem "better_errors"
 end
-
-gem 'rails_12factor', group: :production
-
-gem 'puma'
