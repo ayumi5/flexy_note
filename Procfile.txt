@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* -Des.http.port=$PORT ElasticSearch
+web: bundle exec elasticsearch
