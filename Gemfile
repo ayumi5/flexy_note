@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.0.0p481"
 
 gem 'rails', '4.2.1'
 
