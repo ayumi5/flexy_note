@@ -3,7 +3,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     - base_path = ''
-    - base_path << Rails.application.config.assets.prefix unless Rails.env.production?
+    - base_path << Rails.application.config.assets.prefix
     - base_path << asset_path('/alloy-editor/')
     %script
       console.log("#{base_path}")
