@@ -6,7 +6,8 @@
     - base_path << Rails.application.config.assets.prefix
     - base_path << asset_path('/alloy-editor/')
     %script
-      window.CKEDITOR_BASEPATH="/assets/alloy-editor/";
+      window.ALLOYEDITOR_BASEPATH = '/assets/alloy-editor/';
+      window.CKEDITOR_BASEPATH = '/assets/alloy-editor/';
     %title FlexyNote
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
