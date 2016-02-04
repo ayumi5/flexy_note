@@ -17,4 +17,3 @@
 /tmp
 config/database.yml
 db/db_backup.dmp
-config/secrets.yml
