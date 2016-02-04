@@ -23,8 +23,6 @@
 //= require components
 //= require typeahead.js
 //= require alloy-editor/alloy-editor-all-min
-//= require alloy-editor/lang/en
-//= require alloy-editor/config
 //= require_tree .
 
 $(document).ready(function(){
