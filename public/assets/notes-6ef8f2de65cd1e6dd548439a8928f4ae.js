@@ -1,1 +1,0 @@
-(function(){flexynote.notes={index:function(){return $(document).ready(function(){return setTimeout(function(){return $(".input-group.date").datepicker({format:"yyyy/mm/dd",todayHighlight:!0}).on("changeDate",function(){return $(this).trigger("select")})},0)})}}}).call(this);
