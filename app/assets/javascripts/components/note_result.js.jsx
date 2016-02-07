@@ -69,7 +69,18 @@ var NoteResult = React.createClass({
             },
             {
               name: 'text',
-              buttons: ['code', 'bold', 'italic', 'quote', 'removeFormat', 'strike', 'underline'],
+              buttons: ['code', 'bold', 'italic', 'quote', 'removeFormat', 'strike', 'underline', 'ul', 'ol',
+                {  name: 'styles',
+                   cfg: {
+                     styles: [ { name: 'Head 1', style: {element: 'h1'}},
+                                {name: 'Head 2', style: {element: 'h2'}},
+                                {name: 'Head 3', style: {element: 'h3'}},
+                                {name: 'Head 4', style: {element: 'h4'}},
+                                {name: 'Head 5', style: {element: 'h5'}}
+                              ]
+                   }
+                }
+              ],
               test: AlloyEditor.SelectionTest.text
             }
           ]
