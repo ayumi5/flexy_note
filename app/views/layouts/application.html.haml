@@ -3,10 +3,16 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     - base_path = ''
-    - base_path << Rails.application.config.assets.prefix unless Rails.env.production?
-    - base_path << asset_path('alloy-editor/')
+    - if ENV['PROJECT'] =~ /editor/i
+      - base_path << "/#{Rails.root.basename.to_s}/"
+    - base_path << Rails.application.config.assets.prefix
+    - base_path << '/alloy-editor/'
+    //- base_path = ''
+    //- base_path << Rails.application.config.assets.prefix unless Rails.env.production?
+    //- base_path << asset_path('alloy-editor/')
     %script
-      var CKEDITOR_BASEPATH = "/assets/alloy-editor/";
+      console.log("#{base_path}")
+      var CKEDITOR_BASEPATH = "#{base_path}";
     %title FlexyNote
     = favicon_link_tag '/flexy-chan.jpg'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
