@@ -6,8 +6,8 @@
     - base_path << Rails.application.config.assets.prefix unless Rails.env.production?
     - base_path << asset_path('alloy-editor/')
     %script
-      console.log("#{base_path}")
-      var CKEDITOR_BASEPATH = '/assets/ckeditor/';
+      //console.log("#{base_path}")
+      var CKEDITOR_BASEPATH = '/assets/';
     %title FlexyNote
     = favicon_link_tag '/flexy-chan.jpg'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
