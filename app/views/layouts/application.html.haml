@@ -7,7 +7,8 @@
     - base_path << asset_path('alloy-editor/')
     %script
       console.log("#{base_path}")
-      var CKEDITOR_BASEPATH = "#{base_path}";
+      //var CKEDITOR_BASEPATH = "#{base_path}";
+      var CKEDITOR_BASEPATH = 'https://morning-stream-6277.herokuapp.com/assets/alloy-editor/';
     %title FlexyNote
     = favicon_link_tag '/flexy-chan.jpg'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
