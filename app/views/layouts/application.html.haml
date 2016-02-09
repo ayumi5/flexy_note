@@ -3,7 +3,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     - base_path = ''
-    - base_path << Rails.application.config.assets.prefix unless Rails.env.production?
+    - base_path << Rails.application.config.assets.prefix
     - base_path << asset_path('alloy-editor/')
     %script
       console.log("#{base_path}")
@@ -14,5 +14,4 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body{'data-controller' => "#{controller_name}", 'data-action' => "#{action_name}"}
-    = Rails.application.config.assets.prefix
     = yield
