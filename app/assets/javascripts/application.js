@@ -20,7 +20,7 @@
 //= require react
 //= require react_ujs
 //= require typeahead.js
-//= require alloy-editor/alloy-editor-all-min
+//= require ckeditor/alloy-editor-all-min
 //= require_tree .
 
 $(document).ready(function(){
