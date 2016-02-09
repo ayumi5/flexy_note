@@ -4,7 +4,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     - base_path = ''
     - base_path << Rails.application.config.assets.prefix unless Rails.env.production?
-    - base_path << asset_path('alloy-editor')
+    - base_path << asset_path('alloy-editor/')
     %script
       console.log("#{base_path}")
       var CKEDITOR_BASEPATH = "#{base_path}";
