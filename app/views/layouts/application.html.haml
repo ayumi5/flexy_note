@@ -14,15 +14,4 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body{'data-controller' => "#{controller_name}", 'data-action' => "#{action_name}"}
-    = asset_path('application.js')
-    %br
-    = asset_path('components.js')
-    %br
-    = asset_path('alloy-editor/en.js')
-    %br
-    = asset_path('alloy-editor/config.js')
-    %br
-    = asset_path('alloy-editor/skins/moono/editor.css')
-    %br
-    = asset_path('alloy-editor/lang/en.js ')
     = yield
