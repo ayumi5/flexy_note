@@ -11,5 +11,5 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 Rails.application.config.assets.precompile += %w( *.css, *.scss, *.sass, *.eot, *.ttf, *.woff, *.woff2, *.png, *.jpg, *.gif )
-Rails.application.config.assets.precompile += %w( *.js )
-Rails.application.config.assets.precompile += ['alloy-editor/*.js']
+Rails.application.config.assets.precompile += %w( *.js, 'alloy-editor/*')
+#Rails.application.config.assets.precompile += ['alloy-editor/*']
