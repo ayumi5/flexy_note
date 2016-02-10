@@ -6,7 +6,6 @@
     - base_path << Rails.application.config.assets.prefix
     - base_path << asset_path('alloy-editor/')
     %script
-      console.log("#{base_path}")
       var CKEDITOR_BASEPATH = "#{base_path}";
     %title FlexyNote
     = favicon_link_tag '/flexy-chan.jpg'
@@ -14,4 +13,5 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body{'data-controller' => "#{controller_name}", 'data-action' => "#{action_name}"}
+    = asset_path('alloy-editor/en.js')
     = yield
