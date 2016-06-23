@@ -13,6 +13,6 @@
   2.0.0p481
   
 
-https://flexy-note.herokuapp.com/
 
-The website is currently in progress.
+This app is my personal app to study Ruby and Redux.
+The app is currently in progress.
