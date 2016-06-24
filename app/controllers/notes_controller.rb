@@ -70,7 +70,7 @@ class NotesController < ApplicationController
       @search = NotesSearch.new(params[:note])
       @search.search.only(:id).load.limit(50)
     else
-      Note.all.order({updated_at: :asc}).limit(50)
+      Note.all.order({updated_at: :desc}).limit(50)
     end
   end
 end

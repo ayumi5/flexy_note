@@ -9,8 +9,8 @@ var NoteListing = React.createClass({
     
     return (
       <div className='note-listing col-sm-11 col-sm-offset-1'>
-        {Notes}
         <NoteCreateBox handleModalEdit={this.props.handleModalEdit} handleNoteSubmit={this.props.handleNoteSubmit} onModalLoaded={this.props.onModalLoaded}/>
+        {Notes}
       </div>
     )
   }
