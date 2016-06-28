@@ -14,5 +14,5 @@
   
 
 
-This app is my personal app to study Ruby and Redux.
+This app is my personal app to study Ruby and React.
 The app is currently in progress.
