@@ -21,11 +21,13 @@ gem 'haml-rails'
 gem 'react-bootstrap-rails'
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-react-paginate'
+  gem 'rails-assets-classnames'
   gem 'rails-assets-typeahead.js'
 end
 
 #frontend
-gem 'react-rails', '~> 1.4.0'
+gem 'react-rails', '~> 1.7.2'
 gem 'rails-html-sanitizer'
 
 #form
