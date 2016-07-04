@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'spec_helper'
 require 'rspec/rails'
+require 'selenium-webdriver'
 require 'capybara/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -49,4 +50,5 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
   config.include Capybara::DSL
+  Capybara.default_driver = :selenium
 end

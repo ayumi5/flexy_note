@@ -47,6 +47,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails', '~>4.0'
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring', '~> 1.4.0'
