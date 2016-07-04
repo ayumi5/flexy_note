@@ -25,5 +25,12 @@ module FlexyNote
     config.active_record.raise_in_transactional_callbacks = true
     
     config.react.jsx_transformer_class = React::JSX::JSXTransformer
+    
+    config.generators do |g|
+      g.test_framework = "rspec"
+      g.controller_specs = false
+      g.helper_specs = false
+      g.view_specs = false
+    end
   end
 end
