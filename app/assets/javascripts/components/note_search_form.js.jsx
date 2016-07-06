@@ -18,7 +18,7 @@ var NoteSearchForm = React.createClass({
         <div className='row'>
           <div className='col-sm-6 form-group'>
             <div className='query'>
-              <input type='text' ref='query' className='col-sm-6 form-control' onChange={this.handleChange} /> 
+              <input type='text' ref='query' className='col-sm-6 form-control' onChange={this.handleChange} id = 'text-search' /> 
             </div>
             <div className='category'>
              <select className='form-control' ref='category' onChange={this.handleChange}>
