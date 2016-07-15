@@ -32,7 +32,7 @@ var CreateModal = React.createClass({
               </button>
               <form ref='form' role='form' action="notes" method='POST' onSubmit={this.onNoteCreate}>
                 <div className='form-group'>
-                  <input ref='title' className='form-control edit-title' placeholder="Type in title here"/>
+                  <input ref='title' className='form-control edit-title' id='create-title-modal' placeholder="Type in title here"/>
                   <div className='modal-body'>
                     <h3>Category</h3>
                     <input ref='category' className='form-control edit-category' id="create-category-modal" />
