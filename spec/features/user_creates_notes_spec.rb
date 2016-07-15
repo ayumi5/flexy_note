@@ -2,8 +2,7 @@ require 'rails_helper'
 
 feature 'User creates notes' do
   before do
-    page.visit root_path
-    page.first(".panel-body").click
+    open_up_note
   end
   
   scenario 'open up a modal' do
