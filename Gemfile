@@ -48,6 +48,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~>4.0'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem "capybara-webkit", require: false
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring', '~> 1.4.0'
@@ -55,4 +56,9 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem "better_errors"
+end
+
+group :test do
+  gem 'database_cleaner', require: false
+  gem 'launchy'
 end
