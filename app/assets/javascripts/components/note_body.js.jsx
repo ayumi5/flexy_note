@@ -21,7 +21,7 @@ var NoteBody = React.createClass({
       var categoryName = this.props.note.category.name;
     }
     return (
-      <div className='panel panel-default col-sm-3 listing'>
+      <div className='panel panel-default col-sm-3 listing edit'>
         <div className='panel-body'>
           <p className='date col-sm-6 col-xs-6'>{this.formatDate(this.props.note.updated_at)}</p>
           <span className='action-icons col-sm-6 col-xs-6'>
