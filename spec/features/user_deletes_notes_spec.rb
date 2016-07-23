@@ -8,7 +8,8 @@ feature 'User deletes notes' do
   scenario 'deletes note' do
     page.find(:css, 'i.fa.fa-trash.fa-lg').click
     wait_for_ajax
-    expect(page).not_to have_content("Automated Testing")
-    expect(page).not_to have_content("Rspec")
+    expect(page).not_to have_css('.listing.edit')
+    expect(page).not_to have_css('.note-header > h3', :text => 'rspec tips')
+    expect(page).not_to have_css('.note-header > h4', :text => 'Automated Testing')
   end
 end

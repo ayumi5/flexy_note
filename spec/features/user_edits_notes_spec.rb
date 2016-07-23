@@ -7,10 +7,8 @@ feature 'user edits notes' do
   
   scenario 'open an existing note' do
     page.find(:css, '.listing.edit').click
-    expect(page).to have_content('Automated Testing')
-    expect(page).to have_content('Category')
-    expect(page).to have_content('Rspec')
-    expect(page).to have_content('Text')
-    expect(page).to have_content('I love testing.')
+    expect(page).to have_css('.view-title', :text => 'rspec tips')
+    expect(page).to have_css('.view-category', :text => 'Automated Testing')
+    expect(page).to have_content('use matchers')
   end
 end
