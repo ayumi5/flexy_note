@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'selenium-webdriver'
 require 'capybara-webkit'
 require 'capybara/rails'
+require 'support/database_cleaner'
 require 'support/factory_girl'
 require 'support/test_helpers'
 require 'support/wait_for_ajax'
@@ -40,26 +41,6 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = false
-
-  config.before(:suite) do
-  DatabaseCleaner.clean_with(:truncation)
-end
-
-config.before(:each) do
-  DatabaseCleaner.strategy = :transaction
-end
-
-config.before(:each, :js => true) do
-  DatabaseCleaner.strategy = :truncation
-end
-
-config.before(:each) do
-  DatabaseCleaner.start
-end
-
-config.after(:each) do
-  DatabaseCleaner.clean
-end
 
   config.infer_spec_type_from_file_location!
   config.include Capybara::DSL
