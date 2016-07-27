@@ -57,6 +57,7 @@ GEM
     acts-as-taggable-on (3.5.0)
       activerecord (>= 3.2, < 5)
     addressable (2.3.8)
+    ansi (1.5.0)
     arel (6.0.3)
     babel-source (5.8.33)
     babel-transpiler (0.7.0)
@@ -105,6 +106,9 @@ GEM
       elasticsearch-transport (= 1.0.7)
     elasticsearch-api (1.0.7)
       multi_json
+    elasticsearch-extensions (0.0.22)
+      ansi
+      ruby-prof
     elasticsearch-transport (1.0.7)
       faraday
       multi_json
@@ -242,6 +246,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
+    ruby-prof (0.15.9)
     ruby_parser (3.7.2)
       sexp_processor (~> 4.1)
     rubyzip (1.2.0)
@@ -307,6 +312,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   elasticsearch (= 1.0.8)
+  elasticsearch-extensions
   erb2haml
   factory_girl_rails (~> 4.0)
   font-awesome-sass (~> 4.4.0)

@@ -34,6 +34,8 @@ gem 'rails4-autocomplete'
 
 #search engine
 gem 'elasticsearch', '1.0.8'
+# gem 'elasticsearch-rails'
+# gem 'elasticsearch-model'
 gem 'chewy', '~> 0.8.0'
 gem 'acts-as-taggable-on', '~> 3.4'
 
@@ -61,4 +63,5 @@ end
 group :test do
   gem 'database_cleaner', require: false
   gem 'launchy'
+  gem 'elasticsearch-extensions'
 end
