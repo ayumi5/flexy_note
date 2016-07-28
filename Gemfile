@@ -33,9 +33,8 @@ gem 'simple_form'
 gem 'rails4-autocomplete'
 
 #search engine
-gem 'elasticsearch', '1.0.8'
-# gem 'elasticsearch-rails'
-# gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
 gem 'chewy', '~> 0.8.0'
 gem 'acts-as-taggable-on', '~> 3.4'
 

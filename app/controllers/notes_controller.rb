@@ -67,8 +67,14 @@ class NotesController < ApplicationController
   
   def get_scoped_notes
     if search_params_exist?
-      @search = NotesSearch.new(params[:note])
-      @search.search.only(:id).load.limit(50)
+      
+      notes = Note.search(
+        query: { query_string: {
+          #need to add 'category' and 'starting date' and 'ending date'
+          query: "*#{params[:note][:query]}*"
+        }}
+      )
+      notes.records
     else
       Note.all.order({updated_at: :desc}).limit(50)
     end
