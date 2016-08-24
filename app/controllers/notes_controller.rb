@@ -43,9 +43,17 @@ class NotesController < ApplicationController
 
   private
   
+  def query
+    params[:note][:query]
+  end
+  
+  def category
+    params[:note][:category]
+  end
+  
   def search_params_exist?
     if params[:note]
-      params[:note][:category] = nil if params[:note][:category] == 'All'
+      category = nil if category == 'All'
       values_exist = params[:note].values.map(&:present?)
       values_exist.uniq.include? true
     end
@@ -56,8 +64,7 @@ class NotesController < ApplicationController
   end
   
   def seach_for_category
-    @caregory_name = params[:note][:category] if params[:note][:category]
-    params[:note][:category_id] = Category.find_or_create_by({name: @caregory_name}).id
+    params[:note][:category_id] = Category.find_or_create_by({name: category}).id
   end
   
   def note_params
@@ -66,15 +73,22 @@ class NotesController < ApplicationController
   end
   
   def get_scoped_notes
-    if search_params_exist?
-      
+    if search_params_exist?      
+      #IMPORTANT this query doesn't work when category is nil at the moment
       notes = Note.search(
-        query: { query_string: {
-          #need to add 'category' and 'starting date' and 'ending date'
-          query: "*#{params[:note][:query]}*"
-        }}
-      )
-      notes.records
+        query: {
+          filtered: {
+            query: {
+              query_string: {
+                fields: [:title, "category.name", :content],
+                query: "*#{query}*"
+              }
+            },
+            filter: { term: { "category.name": category.downcase } }
+          }
+        })
+      
+      @notes = notes.records
     else
       Note.all.order({updated_at: :desc}).limit(50)
     end
