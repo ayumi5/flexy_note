@@ -53,7 +53,6 @@ class NotesController < ApplicationController
   
   def search_params_exist?
     if params[:note]
-      category = nil if category == 'All'
       values_exist = params[:note].values.map(&:present?)
       values_exist.uniq.include? true
     end
@@ -74,7 +73,8 @@ class NotesController < ApplicationController
   
   def get_scoped_notes
     if search_params_exist?      
-      #IMPORTANT this query doesn't work when category is nil at the moment
+      category_filter = (category == 'All' ? { match_all: {} } : { term: { "category.name": category.downcase } })
+      
       notes = Note.search(
         query: {
           filtered: {
@@ -84,7 +84,7 @@ class NotesController < ApplicationController
                 query: "*#{query}*"
               }
             },
-            filter: { term: { "category.name": category.downcase } }
+            filter: category_filter
           }
         })
       
