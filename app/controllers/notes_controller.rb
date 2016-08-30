@@ -1,5 +1,7 @@
 class NotesController < ApplicationController
   include NotesHelper
+  include DateHelper
+  
   autocomplete :note, :category
   before_action :find_note_by_id, only: [:destroy, :edit, :update]
 
@@ -51,6 +53,14 @@ class NotesController < ApplicationController
     params[:note][:category]
   end
   
+  def min_date
+    params[:note][:min_date]
+  end
+  
+  def max_date
+    params[:note][:max_date]
+  end
+  
   def search_params_exist?
     if params[:note]
       values_exist = params[:note].values.map(&:present?)
@@ -84,7 +94,17 @@ class NotesController < ApplicationController
                 query: "*#{query}*"
               }
             },
-            filter: category_filter
+            filter: { 
+              "and": [
+                category_filter,
+                { range: {
+                  updated_at: { 
+                    gte: format_date_str(min_date),
+                    lte: format_date_str(max_date)
+                  }
+                }
+              }]
+            }
           }
         })
       

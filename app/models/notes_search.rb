@@ -1,6 +1,6 @@
 class NotesSearch
   include ActiveModel::Model
-  include DateHelper
+  
   attr_accessor :query, :category, :min_date, :max_date
   
   def index
