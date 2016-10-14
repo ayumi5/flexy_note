@@ -18,7 +18,7 @@ class NotesController < ApplicationController
     @note.save
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: {notes: convert_notes_to_json(Note.all)} }
+      format.json { render json: {notes: convert_notes_to_json(all_notes)} }
     end
   end
   
@@ -30,7 +30,7 @@ class NotesController < ApplicationController
     @note.update_attributes!(note_params)
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: {notes: convert_notes_to_json(Note.all)} }
+      format.json { render json: {notes: convert_notes_to_json(all_notes)} }
     end
   end
   
@@ -76,6 +76,10 @@ class NotesController < ApplicationController
     params[:note][:category_id] = Category.find_or_create_by({name: category}).id
   end
   
+  def all_notes
+    Note.all.order({updated_at: :desc}).limit(50)
+  end
+  
   def note_params
     seach_for_category
     params.require(:note).permit(:title, :category_id, :content, :url, :tag_list)
@@ -86,6 +90,9 @@ class NotesController < ApplicationController
       category_filter = (category == 'All' ? { match_all: {} } : { term: { "category.name": category.downcase } })
       
       notes = Note.search(
+        sort: { 
+          updated_at: { order: "desc" }
+        },
         query: {
           filtered: {
             query: {
@@ -110,7 +117,7 @@ class NotesController < ApplicationController
       
       @notes = notes.records
     else
-      Note.all.order({updated_at: :desc}).limit(50)
+      all_notes
     end
   end
 end
