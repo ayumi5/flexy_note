@@ -1,6 +1,7 @@
+var Pagination = ReactBootstrap.Pagination;
 var NoteResult = React.createClass({
   getInitialState: function(){
-    return {notes: [], categories: [], editModal: false };
+    return {notes: [], categories: [], editModal: false, activePage: 1, pageNum: 0 };
   },
   
   //fetch the initial notes from notes_controller
@@ -19,6 +20,21 @@ var NoteResult = React.createClass({
   
   handleModalEdit: function(value){
     this.setState({editModal: value})
+  },
+  
+  handleSelect(event, selectedEvent) {
+    eventKey = selectedEvent.eventKey
+    this.setState({
+      activePage: eventKey
+    });
+    $.ajax({
+      url: '/notes?page=' + eventKey,
+      type: 'GET',
+      dataType: 'json',
+      success: function(data){
+        this.setState(data)
+      }.bind(this)
+    })
   },
   
   getInitialNotes: function(){
@@ -132,8 +148,12 @@ var NoteResult = React.createClass({
         </div>
         <div className='note-listing-wrapper'>
           <NoteListing notes={this.state.notes} handleNoteSubmit={this.handleNoteSubmit} editModal={this.state.editModal} handleModalEdit={this.handleModalEdit} onModalLoaded={this.onModalLoaded}/>
-        </div>
-        
+        </div>  
+        <Pagination
+          bsSize="small"
+          items={this.state.pageNum}
+          activePage={this.state.activePage}
+          onSelect={this.handleSelect} />
       </div>
     )
   }

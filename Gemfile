@@ -27,6 +27,7 @@ end
 #frontend
 gem 'react-rails', '~> 1.4.0'
 gem 'rails-html-sanitizer'
+gem 'react-bootstrap-rails'
 
 #form
 gem 'simple_form'
