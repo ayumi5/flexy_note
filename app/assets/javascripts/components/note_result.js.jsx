@@ -22,13 +22,21 @@ var NoteResult = React.createClass({
     this.setState({editModal: value})
   },
   
-  handleSelect(event, selectedEvent) {
+  handleSelect(event, selectedEvent) {  
+    var query = $("#text-search").val()
+    var category = $(".category").find("select").val()
+    var minDate = $(".min-date").val()
+    var maxDate = $(".max-date").val()
+    formData = { query: query, category: category, min_date: minDate, max_date: maxDate }
+    
     eventKey = selectedEvent.eventKey
     this.setState({
       activePage: eventKey
     });
+    
     $.ajax({
-      url: '/notes?page=' + eventKey,
+      url: '/notes',
+      data: { page: eventKey, note: formData },
       type: 'GET',
       dataType: 'json',
       success: function(data){
