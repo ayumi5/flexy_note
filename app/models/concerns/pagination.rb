@@ -13,6 +13,6 @@ module Pagination
   def page_number(note_count)
     return 0 if note_count.nil?
     div = note_count / PAGE_LIMIT
-    div + 1 if div % PAGE_LIMIT > 0
+    div % PAGE_LIMIT > 0 ? div + 1 : div
   end
 end
