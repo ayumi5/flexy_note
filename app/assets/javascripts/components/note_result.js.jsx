@@ -65,7 +65,9 @@ var NoteResult = React.createClass({
       type: type,
       dataType: 'json',
       success: function(data) {
-        this.setState( data )
+        //reset active page to 1
+        $.extend(data, { activePage: 1 })
+        this.setState(data)
       }.bind(this)
     });
   },

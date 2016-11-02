@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   include Pagination
   
   autocomplete :note, :category
-  before_action :find_note_by_id, only: [:destroy, :edit, :update]
+  before_action :find_note, only: [:destroy, :edit, :update]
 
   def index
     @offset = page_offset(params[:page])
@@ -12,7 +12,7 @@ class NotesController < ApplicationController
     @page_num = page_number(@result[:count])  
     respond_to do |format|
       format.html
-      format.json { render json: {notes: convert_notes_to_json(@result[:notes]), categories: convert_categories_to_json(Category.all), pageNum: @page_num} }
+      format.json { render json: {notes: convert_notes_to_json(@result[:notes]), categories: convert_categories_to_json(Category.all), pageNum: @page_num } }
     end
   end
   
@@ -61,7 +61,7 @@ class NotesController < ApplicationController
     end
   end
   
-  def find_note_by_id
+  def find_note
     @note = Note.find(params[:id])
   end
   
