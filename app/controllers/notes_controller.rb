@@ -9,7 +9,7 @@ class NotesController < ApplicationController
   def index
     @offset = page_offset(params[:page])
     @result = Note.search_by_query(query, @offset)
-    @page_num = page_number(@result[:count])  
+    @page_num = page_number(@result[:count])
     respond_to do |format|
       format.html
       format.json { render json: {notes: convert_notes_to_json(@result[:notes]), categories: convert_categories_to_json(Category.all), pageNum: @page_num } }
@@ -38,11 +38,12 @@ class NotesController < ApplicationController
   end
   
   def destroy
-    @note.destroy!
-    @notes = get_scoped_notes
+    @note.destroy!  
+    @notes = Note.list.limited
+    @page_num = page_number(Note.all.count)
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: {notes: convert_notes_to_json(@notes)} }
+      format.json { render json: {notes: convert_notes_to_json(@notes), categories: convert_categories_to_json(Category.all), pageNum: @page_num} }
     end
   end
 
