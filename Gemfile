@@ -48,7 +48,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails', '~>4.0'
   gem 'capybara'
-  gem 'selenium-webdriver'
   gem "capybara-webkit", require: false
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -60,7 +59,9 @@ group :development, :test do
 end
 
 group :test do
+  gem "faker", "~> 1.4.3"
   gem 'database_cleaner', require: false
   gem 'launchy'
   gem 'elasticsearch-extensions'
+  gem 'selenium-webdriver'
 end

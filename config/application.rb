@@ -27,10 +27,13 @@ module FlexyNote
     config.react.jsx_transformer_class = React::JSX::JSXTransformer
     
     config.generators do |g|
-      g.test_framework = "rspec"
-      g.controller_specs = false
-      g.helper_specs = false
-      g.view_specs = false
+      g.test_framework :rspec,
+        controller_specs: true,
+        helper_specs: false,
+        view_specs: false,
+        routing_specs: false,
+        request_specs: false
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
   end
 end
