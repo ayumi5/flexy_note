@@ -1,3 +1,0 @@
-describe Note do
-  
-end
