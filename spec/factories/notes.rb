@@ -3,6 +3,6 @@ FactoryGirl.define do
     title 'rspec tips'
     content 'use matchers'
     url 'www.example.com'
-    category
+    association :category
   end
 end
