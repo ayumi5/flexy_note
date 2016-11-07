@@ -1,15 +1,18 @@
 class NotesController < ApplicationController
   include NotesHelper
   include DateHelper
+  include Pagination
   
   autocomplete :note, :category
-  before_action :find_note_by_id, only: [:destroy, :edit, :update]
+  before_action :find_note, only: [:destroy, :edit, :update]
 
   def index
-    @notes = get_scoped_notes
+    @offset = page_offset(params[:page])
+    @result = Note.search_by_query(query, @offset)
+    @page_num = page_number(@result[:count])
     respond_to do |format|
       format.html
-      format.json { render json: {notes: convert_notes_to_json(@notes), categories: convert_categories_to_json(Category.all)} }
+      format.json { render json: {notes: convert_notes_to_json(@result[:notes]), categories: convert_categories_to_json(Category.all), pageNum: @page_num } }
     end
   end
   
@@ -18,7 +21,7 @@ class NotesController < ApplicationController
     @note.save
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: {notes: convert_notes_to_json(all_notes)} }
+      format.json { render json: {notes: convert_notes_to_json(Note.list.limited)} }
     end
   end
   
@@ -30,54 +33,41 @@ class NotesController < ApplicationController
     @note.update_attributes!(note_params)
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: {notes: convert_notes_to_json(all_notes)} }
+      format.json { render json: {notes: convert_notes_to_json(Note.list.limited)} }
     end
   end
   
   def destroy
-    @note.destroy!
-    @notes = get_scoped_notes
+    @note.destroy!  
+    @notes = Note.list.limited
+    @page_num = page_number(Note.all.count)
     respond_to do |format|
       format.html { redirect_to notes_path }
-      format.json { render json: {notes: convert_notes_to_json(@notes)} }
+      format.json { render json: {notes: convert_notes_to_json(@notes), categories: convert_categories_to_json(Category.all), pageNum: @page_num} }
     end
   end
 
   private
   
-  def query
-    params[:note][:query]
-  end
-  
-  def category
-    params[:note][:category]
-  end
-  
-  def min_date
-    params[:note][:min_date]
-  end
-  
-  def max_date
-    params[:note][:max_date]
-  end
-  
   def search_params_exist?
     if params[:note]
-      values_exist = params[:note].values.map(&:present?)
+      values_exist = params[:note].map do |key, val|
+        if key == "category"
+          val != 'All'
+        else
+          val.present?
+        end
+      end
       values_exist.uniq.include? true
     end
   end
   
-  def find_note_by_id
+  def find_note
     @note = Note.find(params[:id])
   end
   
   def seach_for_category
-    params[:note][:category_id] = Category.find_or_create_by({name: category}).id
-  end
-  
-  def all_notes
-    Note.all.order({updated_at: :desc}).limit(50)
+    params[:note][:category_id] = Category.find_or_create_by({name: params[:note][:category]}).id
   end
   
   def note_params
@@ -85,39 +75,14 @@ class NotesController < ApplicationController
     params.require(:note).permit(:title, :category_id, :content, :url, :tag_list)
   end
   
-  def get_scoped_notes
-    if search_params_exist?      
-      category_filter = (category == 'All' ? { match_all: {} } : { term: { "category.name": category.downcase } })
-      
-      notes = Note.search(
-        sort: { 
-          updated_at: { order: "desc" }
-        },
-        query: {
-          filtered: {
-            query: {
-              query_string: {
-                fields: [:title, "category.name", :content],
-                query: "*#{query}*"
-              }
-            },
-            filter: { 
-              "and": [
-                category_filter,
-                { range: {
-                  updated_at: { 
-                    gte: format_date_str(min_date),
-                    lte: format_date_str(max_date)
-                  }
-                }
-              }]
-            }
-          }
-        })
-      
-      @notes = notes.records
-    else
-      all_notes
-    end
+  def query
+    return nil unless search_params_exist?
+    { 
+      query: params[:note][:query],
+      category: params[:note][:category],
+      min_date: format_date_str(params[:note][:min_date]),
+      max_date: format_date_str(params[:note][:max_date])
+    }
   end
+  
 end
