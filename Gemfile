@@ -25,7 +25,7 @@ source 'https://rails-assets.org' do
 end
 
 #frontend
-gem 'react-rails', '~> 1.4.0'
+gem 'react-rails', github: "reactjs/react-rails"
 gem 'rails-html-sanitizer'
 gem 'react-bootstrap-rails'
 
