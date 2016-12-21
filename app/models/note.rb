@@ -12,7 +12,7 @@ class Note < ActiveRecord::Base
   
   def self.search_by_query(query, offset)
     return { notes: Note.list(offset).limited, count: Note.list.count } if query.nil?
-    category_filter = (query[:category] == 'All' ? { match_all: {} } : { term: { "category.name": query[:category].downcase } })
+    category_filter = (query[:category] == 'All' ? { match_all: {} } : { term: { "category.name" => query[:category].downcase } })
     notes = Note.search(
     {
       from: offset,
@@ -29,7 +29,7 @@ class Note < ActiveRecord::Base
             }
           },
           filter: { 
-            "and": [
+            "and" => [
               category_filter,
               { range: {
                 updated_at: { 
