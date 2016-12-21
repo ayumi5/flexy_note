@@ -29,7 +29,7 @@ class Note < ActiveRecord::Base
             }
           },
           filter: { 
-            "and": [
+            "and" => [
               category_filter,
               { range: {
                 updated_at: { 
