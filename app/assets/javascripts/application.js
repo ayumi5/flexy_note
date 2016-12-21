@@ -19,7 +19,9 @@
 //= require turbolinks
 //= require react
 //= require react_ujs
-//= require components
+//= require react_bootstrap
+//= require typeahead.js
+//= require alloy-editor/alloy-editor-all-min
 //= require_tree .
 
 $(document).ready(function(){
