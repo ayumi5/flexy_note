@@ -36,6 +36,7 @@ gem 'rails4-autocomplete'
 #search engine
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
+gem 'bonsai-elasticsearch-rails'
 gem 'chewy', '~> 0.8.0'
 gem 'acts-as-taggable-on', '~> 3.4'
 

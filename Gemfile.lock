@@ -69,6 +69,9 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bonsai-elasticsearch-rails (0.2.0)
+      elasticsearch-model (~> 0)
+      elasticsearch-rails (~> 0)
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
@@ -310,6 +313,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 3.4)
   better_errors
+  bonsai-elasticsearch-rails
   bootstrap-datepicker-rails!
   byebug
   capybara
